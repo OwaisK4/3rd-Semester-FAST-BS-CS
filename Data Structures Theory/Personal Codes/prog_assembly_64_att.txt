@@ -1,0 +1,42 @@
+	.file	"prog.c"
+	.text
+	.globl	foo
+	.def	foo;	.scl	2;	.type	32;	.endef
+	.seh_proc	foo
+foo:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	subq	$16, %rsp
+	.seh_stackalloc	16
+	.seh_endprologue
+	movl	%ecx, 16(%rbp)
+	movl	16(%rbp), %eax
+	movl	%eax, -4(%rbp)
+	nop
+	addq	$16, %rsp
+	popq	%rbp
+	ret
+	.seh_endproc
+	.globl	bar
+	.def	bar;	.scl	2;	.type	32;	.endef
+	.seh_proc	bar
+bar:
+	pushq	%rbp
+	.seh_pushreg	%rbp
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	.seh_endprologue
+	movl	$5, -4(%rbp)
+	movl	-4(%rbp), %eax
+	movl	%eax, %ecx
+	call	foo
+	nop
+	addq	$48, %rsp
+	popq	%rbp
+	ret
+	.seh_endproc
+	.ident	"GCC: (tdm64-1) 9.2.0"

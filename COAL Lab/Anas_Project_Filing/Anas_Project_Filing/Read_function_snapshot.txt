@@ -1,0 +1,119 @@
+TITLE Filing_test
+INCLUDE Irvine32.inc
+INCLUDE Macros.inc
+
+.data
+bufferSize = 5000
+buffer BYTE bufferSize DUP(?)
+filehandle HANDLE ?
+filename BYTE "input.txt", 0
+bytesRead DWORD ?
+
+Level3Q LABEL BYTE
+q1c_size = 90
+q1c BYTE 91 DUP(?)
+q2c_size = 182
+q2c BYTE 183 DUP(?)
+q3c_size = 149
+q3c BYTE 150 DUP(?)
+q4c_size = 216
+q4c BYTE 217 DUP(?)
+q5c_size = 95
+q5c BYTE 96 DUP(?)
+q6c_size = 179
+q6c BYTE 180 DUP(?)
+q7c_size = 77
+q7c BYTE 78 DUP(?)
+q8c_size = 95
+q8c BYTE 96 DUP(?)
+q9c_size = 115
+q9c BYTE 116 DUP(?)
+q10c_size = 102
+q10c BYTE 103 DUP(?)
+;finalSize = 92, 185, 422, 640, 737, 918, 997, 1094, 1211, 1315
+
+.code
+READ_FILE PROC
+cld
+mov edx, OFFSET filename
+call OpenInputFile
+mov filehandle, eax
+
+mov edx, OFFSET buffer
+mov ecx, bufferSize
+call ReadFromFile
+mov bytesRead, eax
+
+mov ecx, q1c_size
+mov esi, OFFSET buffer
+mov edi, OFFSET q1c
+rep movsb
+mov q1c[91], 0
+;mov buffer[eax], 0
+
+mov ecx, q2c_size
+mov esi, OFFSET buffer + 92
+mov edi, OFFSET q2c
+rep movsb
+mov q2c[184], 0
+
+mov ecxs, q3c_size
+mov esi, OFFSET buffer + 275
+mov edi, OFFSET q3c
+rep movsb
+mov q3c[150], 0
+
+mov ecx, q4c_size
+mov esi, OFFSET buffer + 424
+mov edi, OFFSET q4c
+rep movsb
+mov q4c[217], 0
+
+mov ecx, q5c_size
+mov esi, OFFSET buffer + 642
+mov edi, OFFSET q5c
+rep movsb
+mov q5c[96], 0
+
+mov ecx, q6c_size
+mov esi, OFFSET buffer + 739
+mov edi, OFFSET q6c
+rep movsb
+mov q6c[180], 0
+
+mov ecx, q7c_size
+mov esi, OFFSET buffer + 920
+mov edi, OFFSET q7c
+rep movsb
+mov q7c[180], 0
+
+mov ecx, q8c_size
+mov esi, OFFSET buffer + 999
+mov edi, OFFSET q8c
+rep movsb
+mov q8c[96], 0
+
+mov ecx, q9c_size
+mov esi, OFFSET buffer + 1096
+mov edi, OFFSET q9c
+rep movsb
+mov q9c[116], 0
+
+mov ecx, q10c_size
+mov esi, OFFSET buffer + 1213
+mov edi, OFFSET q10c
+rep movsb
+mov q10c[103], 0
+
+;mov edx, OFFSET buffer
+mov edx, OFFSET q10c
+call WriteString
+call Crlf
+call Crlf
+
+mWrite "Total bytes in file: "
+call WriteDec
+call Crlf
+
+ret
+READ_FILE ENDP

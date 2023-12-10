@@ -1,0 +1,9 @@
+mov esi, OFFSET total
+ mov edi, OFFSET buffer
+ mov ecx, 4
+ L1:
+	mov al, BYTE PTR [esi]
+	mov BYTE PTR [edi], al
+	inc esi
+	inc edi
+	loop L1

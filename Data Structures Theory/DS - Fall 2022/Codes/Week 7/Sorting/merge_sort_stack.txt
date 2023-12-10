@@ -1,0 +1,106 @@
+
+Starting array: 5 4 6 3 9 1 2 8 15 0 7 
+
+(l=0, m=5, r=10)
+Left array: 5 4 6 3 9 1 
+Right array: 2 8 15 0 7 
+
+(l=0, m=2, r=5)
+Left array: 5 4 6 
+Right array: 3 9 1 
+
+(l=0, m=1, r=2)
+Left array: 5 4 
+Right array: 6 
+
+(l=0, m=0, r=1)
+Left array: 5 
+Right array: 4 
+
+(l=0, r=0) X
+
+       (l=0, m=0, r=1)
+        Left array: 5 
+        Right array: 4 
+
+(l=1, r=1) X
+
+       (l=0, m=1, r=2)
+        Left array: 4 5 
+        Right array: 6 
+
+(l=2, r=2) X
+
+       (l=0, m=2, r=5)
+        Left array: 4 5 6 
+        Right array: 3 9 1 
+
+(l=3, m=4, r=5)
+Left array: 3 9 
+Right array: 1 
+
+(l=3, m=3, r=4)
+Left array: 3 
+Right array: 9 
+
+(l=3, r=3) X
+
+       (l=3, m=3, r=4)
+        Left array: 3 
+        Right array: 9 
+
+(l=4, r=4) X
+
+       (l=3, m=4, r=5)
+        Left array: 3 9 
+        Right array: 1 
+
+(l=5, r=5) X
+
+       (l=0, m=5, r=10)
+        Left array: 1 3 4 5 6 9 
+        Right array: 2 8 15 0 7 
+
+(l=6, m=8, r=10)
+Left array: 2 8 15 
+Right array: 0 7 
+
+(l=6, m=7, r=8)
+Left array: 2 8 
+Right array: 15 
+
+(l=6, m=6, r=7)
+Left array: 2 
+Right array: 8 
+
+(l=6, r=6) X
+
+       (l=6, m=6, r=7)
+        Left array: 2 
+        Right array: 8 
+
+(l=7, r=7) X
+
+       (l=6, m=7, r=8)
+        Left array: 2 8 
+        Right array: 15 
+
+(l=8, r=8) X
+
+       (l=6, m=8, r=10)
+        Left array: 2 8 15 
+        Right array: 0 7 
+
+(l=9, m=9, r=10)
+Left array: 0 
+Right array: 7 
+
+(l=9, r=9) X
+
+       (l=9, m=9, r=10)
+        Left array: 0 
+        Right array: 7 
+
+(l=10, r=10) X
+
+Final array: 0 1 2 3 4 5 6 8 9 10 10 

@@ -1,0 +1,28 @@
+	.file	"prog.c"
+	.intel_syntax noprefix
+	.text
+	.globl	_foo
+	.def	_foo;	.scl	2;	.type	32;	.endef
+_foo:
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 16
+	mov	eax, DWORD PTR [ebp+8]
+	mov	DWORD PTR [ebp-4], eax
+	nop
+	leave
+	ret
+	.globl	_bar
+	.def	_bar;	.scl	2;	.type	32;	.endef
+_bar:
+	push	ebp
+	mov	ebp, esp
+	sub	esp, 20
+	mov	DWORD PTR [ebp-4], 5
+	mov	eax, DWORD PTR [ebp-4]
+	mov	DWORD PTR [esp], eax
+	call	_foo
+	nop
+	leave
+	ret
+	.ident	"GCC: (tdm64-1) 9.2.0"

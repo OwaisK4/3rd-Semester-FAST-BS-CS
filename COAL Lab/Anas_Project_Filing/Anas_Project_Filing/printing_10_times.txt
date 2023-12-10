@@ -1,0 +1,39 @@
+mov edx, OFFSET q1c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q2c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q3c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q4c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q5c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q6c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q7c
+call WriteString
+call Crlf
+mov edx, OFFSET q8c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q9c
+call WriteString
+call Crlf
+call Crlf
+mov edx, OFFSET q10c
+call WriteString
+call Crlf
+call Crlf

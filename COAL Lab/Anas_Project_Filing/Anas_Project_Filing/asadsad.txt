@@ -1,0 +1,20 @@
+L3:
+mov edx,ebp
+call writestring
+call crlf
+add ebp,[edi]
+add edi,4
+call readdec
+cmp al,[esi]
+JNE E1
+add bl,3
+E1:
+inc esi
+loop L3
+call crlf
+mov edx,offset msg4
+call writestring
+mov al,bl
+call writedec
+mov scoreL3,bl
+mov scor3,0

@@ -1,0 +1,4 @@
+﻿  Assembling example.asm...
+  q1.cpp
+D:\FAST NU assignments\COAL Lab\COAL_Lab_12(21K-3298)\COAL_Lab_12(21K-3298)\q1.cpp(7,15): warning C4101: 'prod': unreferenced local variable
+  COAL_Lab_12(21K-3298).vcxproj -> D:\FAST NU assignments\COAL Lab\COAL_Lab_12(21K-3298)\Debug\COAL_Lab_12(21K-3298).exe

@@ -1,0 +1,2084 @@
+Microsoft (R) Macro Assembler Version 14.32.31332.0	    12/11/22 14:02:52
+My First Projec					     Page 1 - 1
+
+
+				TITLE My First Project   
+				INCLUDE Irvine32.inc
+			      C ; Include file for Irvine32.lib             (Irvine32.inc)
+			      C 
+			      C ;OPTION CASEMAP:NONE		; optional: make identifiers case-sensitive
+			      C 
+			      C INCLUDE SmallWin.inc		; MS-Windows prototypes, structures, and constants
+			      C .NOLIST
+			      C .LIST
+			      C 
+			      C INCLUDE VirtualKeys.inc
+			      C ; VirtualKeys.inc
+			      C .NOLIST
+			      C .LIST
+			      C 
+			      C 
+			      C .NOLIST
+			      C .LIST
+			      C 
+ = 000001F5			BUFFER_SIZE = 501
+ 00000000			.data
+ 00000000  00000028 [		buffer BYTE 40 DUP(?),0dh,0ah
+	    00
+	   ] 0D 0A
+ 0000002A 0000002A		bufSize DWORD ($-buffer)
+ 0000002E 43 61 6E 6E 6F	errMsg BYTE "Cannot open file",0dh,0ah,0
+	   74 20 6F 70 65
+	   6E 20 66 69 6C
+	   65 0D 0A 00
+ 00000041 6F 75 74 70 75	filename     BYTE "output.txt",0
+	   74 2E 74 78 74
+	   00
+ 0000004C 00000000		fileHandle   HANDLE ?			; handle to output file
+ 00000050 00000000		bytesWritten DWORD ?    			; number of bytes written   ;File VAriables
+ 00000054			quesL1 DWORD 10 DUP(?)
+ 0000007C			quesL2 DWORD 10 DUP(?)
+ 000000A4			quesL3 DWORD 10 DUP(?)			;QUESTION ADDRESSES
+ 000000CC 45 6E 74 65 72	player BYTE "Enter Player Name: ",0
+	   20 50 6C 61 79
+	   65 72 20 4E 61
+	   6D 65 3A 20 00
+ 000000E0 20 20 20 20 20	spaces1 BYTE "                                                                      ",0
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   00
+ 00000127 01 04 02 02 03	arr1 BYTE 1,4,2,2,3,3,1,2,4,3
+	   03 01 02 04 03
+ 00000131 02 04 03 01 02	arr2 BYTE 2,4,3,1,2,2,1,1,1,4
+	   02 01 01 01 04
+ 0000013B 03 04 03 02 04	arr3 BYTE 3,4,3,2,4,1,1,1,2,3		;ANSWERS
+	   01 01 01 02 03
+ 00000145  0000000A [		name1 BYTE 10 DUP(?)
+	    00
+	   ]
+ 0000014F 00			scoreL1 BYTE ?  
+ 00000150 00			scoreL2 BYTE ?  
+ 00000151 00			scoreL3 BYTE ?						;SCORE OF EACH LEVEL 
+ 00000152 59 4F 55 52 20	msg1 BYTE "YOUR LEVEL 1 SCORE: ",0
+	   4C 45 56 45 4C
+	   20 31 20 53 43
+	   4F 52 45 3A 20
+	   00
+ 00000167 59 4F 55 52 20	msg3 BYTE "YOUR LEVEL 2 SCORE: ",0
+	   4C 45 56 45 4C
+	   20 32 20 53 43
+	   4F 52 45 3A 20
+	   00
+ 0000017C 59 4F 55 52 20	msg4 BYTE "YOUR LEVEL 3 SCORE: ",0
+	   4C 45 56 45 4C
+	   20 33 20 53 43
+	   4F 52 45 3A 20
+	   00
+ 00000191 45 78 63 65 6C	string1 BYTE "Excellent IQ LEVEL",0
+	   6C 65 6E 74 20
+	   49 51 20 4C 45
+	   56 45 4C 00
+ 000001A4 46 41 49 52 20	string2 BYTE "FAIR IQ LEVEL ",0
+	   49 51 20 4C 45
+	   56 45 4C 20 00
+ 000001B3 50 4F 4F 52 20	string3 BYTE "POOR IQ LEVEL",0				;IQ STAGING
+	   49 51 20 4C 45
+	   56 45 4C 00
+ 000001C1 43 4F 4E 47 52	string4 BYTE 'C','O','N','G','R','A','T','U','L','A','T','I','O','N',' ','L','E','V','E','L',' ','P','A','S','S','E','D',0	;REWARD
+	   41 54 55 4C 41
+	   54 49 4F 4E 20
+	   4C 45 56 45 4C
+	   20 50 41 53 53
+	   45 44 00
+ 000001DD 20 20 20 20 51	string5 BYTE "    QUIZ/INTELLIGENCE GAME",0
+	   55 49 5A 2F 49
+	   4E 54 45 4C 4C
+	   49 47 45 4E 43
+	   45 20 47 41 4D
+	   45 00
+ 000001F8 20 20 20 20 20	string6 BYTE "         PROJECT BY",0dh,10,"                                                                          Muhammad Anas 21K-4556",0dh,10,"                                                                        Muhammad Shaheer  21K-3323",13,10," ",13,0
+	   20 20 20 20 50
+	   52 4F 4A 45 43
+	   54 20 42 59 0D
+	   0A 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   4D 75 68 61 6D
+	   6D 61 64 20 41
+	   6E 61 73 20 32
+	   31 4B 2D 34 35
+	   35 36 0D 0A 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 20 20 20 20
+	   20 4D 75 68 61
+	   6D 6D 61 64 20
+	   53 68 61 68 65
+	   65 72 20 20 32
+	   31 4B 2D 33 33
+	   32 33 0D 0A 20
+	   0D 00
+ 000002D6 50 52 45 53 53	string7 BYTE "PRESS ANY KEY TO CONTINUE!!!!",0
+	   20 41 4E 59 20
+	   4B 45 59 20 54
+	   4F 20 43 4F 4E
+	   54 49 4E 55 45
+	   21 21 21 21 00
+ 000002F4 59 4F 55 52 20	QuizScore BYTE "YOUR QUIZ SCORE: ",0
+	   51 55 49 5A 20
+	   53 43 4F 52 45
+	   3A 20 00
+ 00000306 59 4F 55 52 20	finalmsg BYTE "YOUR IQ LEVEL: ",0
+	   49 51 20 4C 45
+	   56 45 4C 3A 20
+	   00
+ 00000316 57 48 41 54 20	Opt BYTE "WHAT DO YOU WANT ? ",0ah,"1: PLAY A QUIZ GAME ",0ah,"2: CALCULATE YOUR IQ ",0ah,"Enter choice: ",0
+	   44 4F 20 59 4F
+	   55 20 57 41 4E
+	   54 20 3F 20 0A
+	   31 3A 20 50 4C
+	   41 59 20 41 20
+	   51 55 49 5A 20
+	   47 41 4D 45 20
+	   0A 32 3A 20 43
+	   41 4C 43 55 4C
+	   41 54 45 20 59
+	   4F 55 52 20 49
+	   51 20 0A 45 6E
+	   74 65 72 20 63
+	   68 6F 69 63 65
+	   3A 20 00
+ 00000364 05			life BYTE 5		;LIFE FOR PLAYER ONLY IN OPT QUIZ
+ 00000365 0000			TotalScore WORD ?
+ 00000367 0000001B		count DWORD 27
+				QLEVEL3 PROTO, ques3:PTR DWORD, lev3q:PTR BYTE,scor3:BYTE
+				QLEVEL2 PROTO, ques:PTR DWORD, lev2q:PTR BYTE,scor2:BYTE
+				QLEVEL1 PROTO, quesA:PTR DWORD, lev1q:PTR BYTE,scor:BYTE		;QUIZ FUNCTIONS
+				LEVEL1 PROTO, quesA:PTR DWORD, lev1q:PTR BYTE,scor:BYTE
+				LEVEL2 PROTO, ques:PTR DWORD, lev2q:PTR BYTE,scor2:BYTE
+				LEVEL3 PROTO, ques3:PTR DWORD, lev3q:PTR BYTE,scor3:BYTE		;IQ FUNCTIONS
+				;//////Shaheer LEVEL 3 QUESTIONS
+ 0000036B 51 31 29 2E 57	Level3Q BYTE "Q1).What number is one quarter of one tenth of one fifth of 200? ",0ah,"1) 25",0ah,"2) 20",0ah,"3) 1",0ah,"4) 5",0  
+	   68 61 74 20 6E
+	   75 6D 62 65 72
+	   20 69 73 20 6F
+	   6E 65 20 71 75
+	   61 72 74 65 72
+	   20 6F 66 20 6F
+	   6E 65 20 74 65
+	   6E 74 68 20 6F
+	   66 20 6F 6E 65
+	   20 66 69 66 74
+	   68 20 6F 66 20
+	   32 30 30 3F 20
+	   0A 31 29 20 32
+	   35 0A 32 29 20
+	   32 30 0A 33 29
+	   20 31 0A 34 29
+	   20 35 00
+ 000003C3 = 00000058			q1C=($-Level3Q)
+ 000003C3  51 32 29 2E 43			BYTE "Q2).Compare and contrast or classification problems are commonly used to measure intelligence. Which of the five is least like the other four?",0ah,"1) Eel",0ah,"2) Shark",0ah,"3)Dolphin ",0ah,"4)Turtle",0
+	   6F 6D 70 61 72
+	   65 20 61 6E 64
+	   20 63 6F 6E 74
+	   72 61 73 74 20
+	   6F 72 20 63 6C
+	   61 73 73 69 66
+	   69 63 61 74 69
+	   6F 6E 20 70 72
+	   6F 62 6C 65 6D
+	   73 20 61 72 65
+	   20 63 6F 6D 6D
+	   6F 6E 6C 79 20
+	   75 73 65 64 20
+	   74 6F 20 6D 65
+	   61 73 75 72 65
+	   20 69 6E 74 65
+	   6C 6C 69 67 65
+	   6E 63 65 2E 20
+	   57 68 69 63 68
+	   20 6F 66 20 74
+	   68 65 20 66 69
+	   76 65 20 69 73
+	   20 6C 65 61 73
+	   74 20 6C 69 6B
+	   65 20 74 68 65
+	   20 6F 74 68 65
+	   72 20 66 6F 75
+	   72 3F 0A 31 29
+	   20 45 65 6C 0A
+	   32 29 20 53 68
+	   61 72 6B 0A 33
+	   29 44 6F 6C 70
+	   68 69 6E 20 0A
+	   34 29 54 75 72
+	   74 6C 65 00
+ 00000476 = 000000B3		    q2C=($-Level3Q-q1C)
+ 00000476  51 33 29 2E 54			BYTE "Q3).The mystery number is between 60 and 150, a multiple of 7, and the sum of its digits is 10. What is the mystery number?",0ah,"1) 63",0ah,"2) 84 ",0ah,"3) 91 ",0ah,"4)82 ",0 ;5    13
+	   68 65 20 6D 79
+	   73 74 65 72 79
+	   20 6E 75 6D 62
+	   65 72 20 69 73
+	   20 62 65 74 77
+	   65 65 6E 20 36
+	   30 20 61 6E 64
+	   20 31 35 30 2C
+	   20 61 20 6D 75
+	   6C 74 69 70 6C
+	   65 20 6F 66 20
+	   37 2C 20 61 6E
+	   64 20 74 68 65
+	   20 73 75 6D 20
+	   6F 66 20 69 74
+	   73 20 64 69 67
+	   69 74 73 20 69
+	   73 20 31 30 2E
+	   20 57 68 61 74
+	   20 69 73 20 74
+	   68 65 20 6D 79
+	   73 74 65 72 79
+	   20 6E 75 6D 62
+	   65 72 3F 0A 31
+	   29 20 36 33 0A
+	   32 29 20 38 34
+	   20 0A 33 29 20
+	   39 31 20 0A 34
+	   29 38 32 20 00
+ 0000050C = 00000096		    q3C=($-Level3Q-q1C-q2C)
+ 0000050C  51 34 29 2E 54			BYTE "Q4).Two rabbits, butt to butt, start hopping in opposite directions for 2 meters, hop left 3 meters, and then left another 2 meters. What is the distance between them?",0ah,"1) 12 meters",0ah,"2) 6 meters",0ah,"3) 2 meters",0ah,"4) 8 meters",0 ;5
+	   77 6F 20 72 61
+	   62 62 69 74 73
+	   2C 20 62 75 74
+	   74 20 74 6F 20
+	   62 75 74 74 2C
+	   20 73 74 61 72
+	   74 20 68 6F 70
+	   70 69 6E 67 20
+	   69 6E 20 6F 70
+	   70 6F 73 69 74
+	   65 20 64 69 72
+	   65 63 74 69 6F
+	   6E 73 20 66 6F
+	   72 20 32 20 6D
+	   65 74 65 72 73
+	   2C 20 68 6F 70
+	   20 6C 65 66 74
+	   20 33 20 6D 65
+	   74 65 72 73 2C
+	   20 61 6E 64 20
+	   74 68 65 6E 20
+	   6C 65 66 74 20
+	   61 6E 6F 74 68
+	   65 72 20 32 20
+	   6D 65 74 65 72
+	   73 2E 20 57 68
+	   61 74 20 69 73
+	   20 74 68 65 20
+	   64 69 73 74 61
+	   6E 63 65 20 62
+	   65 74 77 65 65
+	   6E 20 74 68 65
+	   6D 3F 0A 31 29
+	   20 31 32 20 6D
+	   65 74 65 72 73
+	   0A 32 29 20 36
+	   20 6D 65 74 65
+	   72 73 0A 33 29
+	   20 32 20 6D 65
+	   74 65 72 73 0A
+	   34 29 20 38 20
+	   6D 65 74 65 72
+	   73 00
+ 000005E5 = 000000D9		    q4C=($-Level3Q-q1C-q2C-q3C)
+ 000005E5  51 35 29 2E 31			BYTE "Q5).144, 233, 377, 610,?, 1597, 2584. What is the missing number?",0ah,"1) 1110",0ah,"2) 1287",0ah,"3) 961",0ah,"4) 987",0 ;132
+	   34 34 2C 20 32
+	   33 33 2C 20 33
+	   37 37 2C 20 36
+	   31 30 2C 3F 2C
+	   20 31 35 39 37
+	   2C 20 32 35 38
+	   34 2E 20 57 68
+	   61 74 20 69 73
+	   20 74 68 65 20
+	   6D 69 73 73 69
+	   6E 67 20 6E 75
+	   6D 62 65 72 3F
+	   0A 31 29 20 31
+	   31 31 30 0A 32
+	   29 20 31 32 38
+	   37 0A 33 29 20
+	   39 36 31 0A 34
+	   29 20 39 38 37
+	   00
+ 00000645 = 00000060			q5C=($-Level3Q-q1C-q2C-q3C-q4C)
+ 00000645  51 36 29 2E 54			BYTE "Q6).The pinata participant notices she is facing west before blindfolded. She is spun 180 degrees to the left, then 720 degrees to the right.",0ah," In what direction is she now facing?",0ah,"1) East",0ah,"2) North",0ah,"3) South",0ah,"4) West",0
+	   68 65 20 70 69
+	   6E 61 74 61 20
+	   70 61 72 74 69
+	   63 69 70 61 6E
+	   74 20 6E 6F 74
+	   69 63 65 73 20
+	   73 68 65 20 69
+	   73 20 66 61 63
+	   69 6E 67 20 77
+	   65 73 74 20 62
+	   65 66 6F 72 65
+	   20 62 6C 69 6E
+	   64 66 6F 6C 64
+	   65 64 2E 20 53
+	   68 65 20 69 73
+	   20 73 70 75 6E
+	   20 31 38 30 20
+	   64 65 67 72 65
+	   65 73 20 74 6F
+	   20 74 68 65 20
+	   6C 65 66 74 2C
+	   20 74 68 65 6E
+	   20 37 32 30 20
+	   64 65 67 72 65
+	   65 73 20 74 6F
+	   20 74 68 65 20
+	   72 69 67 68 74
+	   2E 0A 20 49 6E
+	   20 77 68 61 74
+	   20 64 69 72 65
+	   63 74 69 6F 6E
+	   20 69 73 20 73
+	   68 65 20 6E 6F
+	   77 20 66 61 63
+	   69 6E 67 3F 0A
+	   31 29 20 45 61
+	   73 74 0A 32 29
+	   20 4E 6F 72 74
+	   68 0A 33 29 20
+	   53 6F 75 74 68
+	   0A 34 29 20 57
+	   65 73 74 00
+ 0000071B = 000000D6		    q6C=($-Level3Q-q1C-q2C-q3C-q4C-q5C)
+ 0000071B  51 37 29 2E 32	        BYTE "Q7).2, 10, 12, 60, 62, 310… What is next?",0ah,"1) 312",0ah,"2) 1550",0ah,"3) 360",0ah,"4) 4650",0
+	   2C 20 31 30 2C
+	   20 31 32 2C 20
+	   36 30 2C 20 36
+	   32 2C 20 33 31
+	   30 85 20 57 68
+	   61 74 20 69 73
+	   20 6E 65 78 74
+	   3F 0A 31 29 20
+	   33 31 32 0A 32
+	   29 20 31 35 35
+	   30 0A 33 29 20
+	   33 36 30 0A 34
+	   29 20 34 36 35
+	   30 00
+ 00000763 = 00000048		    q7C=($-Level3Q-q1C-q2C-q3C-q4C-q5C-q6C)
+ 00000763  51 38 29 2E 57	        BYTE "Q8).What is the largest planet in the solar system?",0ah,"1) Jupiter",0ah,"2) MARS",0ah,"3) Saturn",0ah,"4) Neptune",0
+	   68 61 74 20 69
+	   73 20 74 68 65
+	   20 6C 61 72 67
+	   65 73 74 20 70
+	   6C 61 6E 65 74
+	   20 69 6E 20 74
+	   68 65 20 73 6F
+	   6C 61 72 20 73
+	   79 73 74 65 6D
+	   3F 0A 31 29 20
+	   4A 75 70 69 74
+	   65 72 0A 32 29
+	   20 4D 41 52 53
+	   0A 33 29 20 53
+	   61 74 75 72 6E
+	   0A 34 29 20 4E
+	   65 70 74 75 6E
+	   65 00
+ 000007BF = 0000005C		    q8C=($-Level3Q-q1C-q2C-q3C-q4C-q5C-q6C-q7C)
+ 000007BF  51 39 29 2E 57	        BYTE "Q9).Which country is reputed to have the world's oldest flag design?",0ah,"1) Sweden",0ah,"2) Denmark",0ah,"3) Germany",0ah,"4) England",0
+	   68 69 63 68 20
+	   63 6F 75 6E 74
+	   72 79 20 69 73
+	   20 72 65 70 75
+	   74 65 64 20 74
+	   6F 20 68 61 76
+	   65 20 74 68 65
+	   20 77 6F 72 6C
+	   64 27 73 20 6F
+	   6C 64 65 73 74
+	   20 66 6C 61 67
+	   20 64 65 73 69
+	   67 6E 3F 0A 31
+	   29 20 53 77 65
+	   64 65 6E 0A 32
+	   29 20 44 65 6E
+	   6D 61 72 6B 0A
+	   33 29 20 47 65
+	   72 6D 61 6E 79
+	   0A 34 29 20 45
+	   6E 67 6C 61 6E
+	   64 00
+ 0000082F = 00000070		    q9C=($-Level3Q-q1C-q2C-q3C-q4C-q5C-q6C-q7C-q8C)
+ 0000082F  51 31 30 29 2E	        BYTE "Q10).What is the most common blood type in humans?",0ah,"1) B Positive",0ah,"2) Type A",0ah,"3) Type O",0ah,"4) B negative",0
+	   57 68 61 74 20
+	   69 73 20 74 68
+	   65 20 6D 6F 73
+	   74 20 63 6F 6D
+	   6D 6F 6E 20 62
+	   6C 6F 6F 64 20
+	   74 79 70 65 20
+	   69 6E 20 68 75
+	   6D 61 6E 73 3F
+	   0A 31 29 20 42
+	   20 50 6F 73 69
+	   74 69 76 65 0A
+	   32 29 20 54 79
+	   70 65 20 41 0A
+	   33 29 20 54 79
+	   70 65 20 4F 0A
+	   34 29 20 42 20
+	   6E 65 67 61 74
+	   69 76 65 00
+ 00000892 = 00000063		    q10C=($-Level3Q-q1C-q2C-q3C-q4C-q5C-q6C-q7C-q8C-q9C)
+
+
+				;////////Shaheer LEVEL 2 QUESTION
+ 00000892 51 31 29 2E 57	Level2Q BYTE "Q1).What will be the next number in series 39,42,48,? ",0ah,"1) 59" ,0ah,"2) 60",0ah,"3) 82",0ah,"4) 23",0  
+	   68 61 74 20 77
+	   69 6C 6C 20 62
+	   65 20 74 68 65
+	   20 6E 65 78 74
+	   20 6E 75 6D 62
+	   65 72 20 69 6E
+	   20 73 65 72 69
+	   65 73 20 33 39
+	   2C 34 32 2C 34
+	   38 2C 3F 20 0A
+	   31 29 20 35 39
+	   0A 32 29 20 36
+	   30 0A 33 29 20
+	   38 32 0A 34 29
+	   20 32 33 00
+ 000008E1 = 0000004F			q1A=($-Level2Q)
+ 000008E1  51 32 29 2E 57			BYTE "Q2).What number comletes best analogy: 8:4 as 10:",0ah,"1) 30",0ah,"2) 2",0ah,"3) 24",0ah,"4) 5",0
+	   68 61 74 20 6E
+	   75 6D 62 65 72
+	   20 63 6F 6D 6C
+	   65 74 65 73 20
+	   62 65 73 74 20
+	   61 6E 61 6C 6F
+	   67 79 3A 20 38
+	   3A 34 20 61 73
+	   20 31 30 3A 0A
+	   31 29 20 33 30
+	   0A 32 29 20 32
+	   0A 33 29 20 32
+	   34 0A 34 29 20
+	   35 00
+ 00000929 = 00000048		    q2A=($-Level2Q-q1A)
+ 00000929  51 33 29 2E 41			BYTE "Q3).A bat and a ball together cost $1.10. The bat costs $1 more than the ball. How much does the ball cost?",0ah,"1) 3 cents",0ah,"2) 4 cents ",0ah,"3) 5 cents ",0ah,"4) 6 cents",0 ;5    13
+	   20 62 61 74 20
+	   61 6E 64 20 61
+	   20 62 61 6C 6C
+	   20 74 6F 67 65
+	   74 68 65 72 20
+	   63 6F 73 74 20
+	   24 31 2E 31 30
+	   2E 20 54 68 65
+	   20 62 61 74 20
+	   63 6F 73 74 73
+	   20 24 31 20 6D
+	   6F 72 65 20 74
+	   68 61 6E 20 74
+	   68 65 20 62 61
+	   6C 6C 2E 20 48
+	   6F 77 20 6D 75
+	   63 68 20 64 6F
+	   65 73 20 74 68
+	   65 20 62 61 6C
+	   6C 20 63 6F 73
+	   74 3F 0A 31 29
+	   20 33 20 63 65
+	   6E 74 73 0A 32
+	   29 20 34 20 63
+	   65 6E 74 73 20
+	   0A 33 29 20 35
+	   20 63 65 6E 74
+	   73 20 0A 34 29
+	   20 36 20 63 65
+	   6E 74 73 00
+ 000009C3 = 0000009A		    q3A=($-Level2Q-q1A-q2A)
+ 000009C3  51 34 29 2E 49			 BYTE "Q4).If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?",0ah,"1) 5 minutes",0ah,"2) 10 minutes",0ah,"3) 20 minutes",0ah,"4) 30 minutes",0 ;5
+	   66 20 69 74 20
+	   74 61 6B 65 73
+	   20 35 20 6D 61
+	   63 68 69 6E 65
+	   73 20 35 20 6D
+	   69 6E 75 74 65
+	   73 20 74 6F 20
+	   6D 61 6B 65 20
+	   35 20 77 69 64
+	   67 65 74 73 2C
+	   20 68 6F 77 20
+	   6C 6F 6E 67 20
+	   77 6F 75 6C 64
+	   20 69 74 20 74
+	   61 6B 65 20 31
+	   30 30 20 6D 61
+	   63 68 69 6E 65
+	   73 20 74 6F 20
+	   6D 61 6B 65 20
+	   31 30 30 20 77
+	   69 64 67 65 74
+	   73 3F 0A 31 29
+	   20 35 20 6D 69
+	   6E 75 74 65 73
+	   0A 32 29 20 31
+	   30 20 6D 69 6E
+	   75 74 65 73 0A
+	   33 29 20 32 30
+	   20 6D 69 6E 75
+	   74 65 73 0A 34
+	   29 20 33 30 20
+	   6D 69 6E 75 74
+	   65 73 00
+ 00000A6B = 000000A8		    q4A=($-Level2Q-q1A-q2A-q3A)
+ 00000A6B  51 35 29 2E 41			 BYTE "Q5).At a conference, 12 members shook hands with each other before & after the meeting. How many total number of hand shakes occurred?",0ah,"1) 130",0ah,"2) 132",0ah,"3) 142",0ah,"4) 144",0 ;132
+	   74 20 61 20 63
+	   6F 6E 66 65 72
+	   65 6E 63 65 2C
+	   20 31 32 20 6D
+	   65 6D 62 65 72
+	   73 20 73 68 6F
+	   6F 6B 20 68 61
+	   6E 64 73 20 77
+	   69 74 68 20 65
+	   61 63 68 20 6F
+	   74 68 65 72 20
+	   62 65 66 6F 72
+	   65 20 26 20 61
+	   66 74 65 72 20
+	   74 68 65 20 6D
+	   65 65 74 69 6E
+	   67 2E 20 48 6F
+	   77 20 6D 61 6E
+	   79 20 74 6F 74
+	   61 6C 20 6E 75
+	   6D 62 65 72 20
+	   6F 66 20 68 61
+	   6E 64 20 73 68
+	   61 6B 65 73 20
+	   6F 63 63 75 72
+	   72 65 64 3F 0A
+	   31 29 20 31 33
+	   30 0A 32 29 20
+	   31 33 32 0A 33
+	   29 20 31 34 32
+	   0A 34 29 20 31
+	   34 34 00
+ 00000B0E = 000000A3			q5A=($-Level2Q-q1A-q2A-q3A-q4A)
+ 00000B0E  51 36 29 2E 46			BYTE "Q6).Forest is to tree as tree is to ?",0ah,"1) Plant",0ah,"2) Leaf",0ah,"3) Branch",0ah,"4) Mangrove",0
+	   6F 72 65 73 74
+	   20 69 73 20 74
+	   6F 20 74 72 65
+	   65 20 61 73 20
+	   74 72 65 65 20
+	   69 73 20 74 6F
+	   20 3F 0A 31 29
+	   20 50 6C 61 6E
+	   74 0A 32 29 20
+	   4C 65 61 66 0A
+	   33 29 20 42 72
+	   61 6E 63 68 0A
+	   34 29 20 4D 61
+	   6E 67 72 6F 76
+	   65 00
+ 00000B5B = 0000004D			q6A=($-Level2Q-q1A-q2A-q3A-q4A-q5A)
+ 00000B5B  51 37 29 2E 54			BYTE "Q7).The day after the day after tomorrow is four days before Monday. What day is it today?",0ah,"1) Monday",0ah,"2) Tuesday",0ah,"3) Wednesday",0ah,"4) Saturday",0
+	   68 65 20 64 61
+	   79 20 61 66 74
+	   65 72 20 74 68
+	   65 20 64 61 79
+	   20 61 66 74 65
+	   72 20 74 6F 6D
+	   6F 72 72 6F 77
+	   20 69 73 20 66
+	   6F 75 72 20 64
+	   61 79 73 20 62
+	   65 66 6F 72 65
+	   20 4D 6F 6E 64
+	   61 79 2E 20 57
+	   68 61 74 20 64
+	   61 79 20 69 73
+	   20 69 74 20 74
+	   6F 64 61 79 3F
+	   0A 31 29 20 4D
+	   6F 6E 64 61 79
+	   0A 32 29 20 54
+	   75 65 73 64 61
+	   79 0A 33 29 20
+	   57 65 64 6E 65
+	   73 64 61 79 0A
+	   34 29 20 53 61
+	   74 75 72 64 61
+	   79 00
+ 00000BE4 = 00000089			q7A=($-Level2Q-q1A-q2A-q3A-q4A-q5A-q6A)
+ 00000BE4  51 38 29 2E 43			BYTE "Q8).Complete this series of numbers: 9 = 4, 21 = 9, 22 = 9, 24 = 10, 8 = 5, 7 = 5, 99 = 10, 100 = 7, 17 =?",0ah,"1) 9",0ah,"2) 8",0ah,"3) 7",0ah,"4) 6",0
+	   6F 6D 70 6C 65
+	   74 65 20 74 68
+	   69 73 20 73 65
+	   72 69 65 73 20
+	   6F 66 20 6E 75
+	   6D 62 65 72 73
+	   3A 20 39 20 3D
+	   20 34 2C 20 32
+	   31 20 3D 20 39
+	   2C 20 32 32 20
+	   3D 20 39 2C 20
+	   32 34 20 3D 20
+	   31 30 2C 20 38
+	   20 3D 20 35 2C
+	   20 37 20 3D 20
+	   35 2C 20 39 39
+	   20 3D 20 31 30
+	   2C 20 31 30 30
+	   20 3D 20 37 2C
+	   20 31 37 20 3D
+	   3F 0A 31 29 20
+	   39 0A 32 29 20
+	   38 0A 33 29 20
+	   37 0A 34 29 20
+	   36 00
+ 00000C63 = 0000007F			q8A=($-Level2Q-q1A-q2A-q3A-q4A-q5A-q6A-q7A)
+ 00000C63  51 39 29 2E 57			BYTE "Q9).What is the maximum number of times a single page of a newspaper can be folded in half by hand?",0ah,"1) 1",0ah,"2) 3",0ah,"3) 4",0ah,"4) 6",0
+	   68 61 74 20 69
+	   73 20 74 68 65
+	   20 6D 61 78 69
+	   6D 75 6D 20 6E
+	   75 6D 62 65 72
+	   20 6F 66 20 74
+	   69 6D 65 73 20
+	   61 20 73 69 6E
+	   67 6C 65 20 70
+	   61 67 65 20 6F
+	   66 20 61 20 6E
+	   65 77 73 70 61
+	   70 65 72 20 63
+	   61 6E 20 62 65
+	   20 66 6F 6C 64
+	   65 64 20 69 6E
+	   20 68 61 6C 66
+	   20 62 79 20 68
+	   61 6E 64 3F 0A
+	   31 29 20 31 0A
+	   32 29 20 33 0A
+	   33 29 20 34 0A
+	   34 29 20 36 00
+ 00000CDB = 00000078			q9A=($-Level2Q-q1A-q2A-q3A-q4A-q5A-q6A-q7A-q8A)
+ 00000CDB  51 31 30 29 2E			BYTE "Q10).If you divide 30 by half and add ten, what do you get?",0ah,"1) 5",0ah,"2) 35",0ah,"3) 65",0ah,"4) 70",0
+	   49 66 20 79 6F
+	   75 20 64 69 76
+	   69 64 65 20 33
+	   30 20 62 79 20
+	   68 61 6C 66 20
+	   61 6E 64 20 61
+	   64 64 20 74 65
+	   6E 2C 20 77 68
+	   61 74 20 64 6F
+	   20 79 6F 75 20
+	   67 65 74 3F 0A
+	   31 29 20 35 0A
+	   32 29 20 33 35
+	   0A 33 29 20 36
+	   35 0A 34 29 20
+	   37 30 00
+ 00000D2E = 00000053		     q10A=($-Level2Q-q1A-q2A-q3A-q4A-q5A-q6A-q7A-q8A-q9A)
+
+				;/////////Anas 
+ 00000D2E 51 31 29 2E 48	Level1Q BYTE "Q1).How many sides are there in a hexagon?",0ah,"1) 6"	,0ah,"2) 2",0ah,"3) 3",0ah,"4) 5",0   
+	   6F 77 20 6D 61
+	   6E 79 20 73 69
+	   64 65 73 20 61
+	   72 65 20 74 68
+	   65 72 65 20 69
+	   6E 20 61 20 68
+	   65 78 61 67 6F
+	   6E 3F 0A 31 29
+	   20 36 0A 32 29
+	   20 32 0A 33 29
+	   20 33 0A 34 29
+	   20 35 00
+ 00000D6D = 0000003F			 q1=($-Level1Q)											
+ 00000D6D  51 32 29 2E 41		   BYTE "Q2).Area of a rectangle with L=4 and B=3",0ah,"1) 7",0ah,"2) 14",0ah,"3) 16",0ah,"4) 12",0		
+	   72 65 61 20 6F
+	   66 20 61 20 72
+	   65 63 74 61 6E
+	   67 6C 65 20 77
+	   69 74 68 20 4C
+	   3D 34 20 61 6E
+	   64 20 42 3D 33
+	   0A 31 29 20 37
+	   0A 32 29 20 31
+	   34 0A 33 29 20
+	   31 36 0A 34 29
+	   20 31 32 00
+ 00000DAD = 00000040		     q2=($-Level1Q-q1)
+ 00000DAD  51 33 29 2E 4E		   BYTE "Q3).Name of current president of America",0ah,"1)BArrayAak Obama",0ah,"2)Joe Bidden ",0ah,"3)Trump ",0ah,"4)Henry Clinton",0 ;5    13
+	   61 6D 65 20 6F
+	   66 20 63 75 72
+	   72 65 6E 74 20
+	   70 72 65 73 69
+	   64 65 6E 74 20
+	   6F 66 20 41 6D
+	   65 72 69 63 61
+	   0A 31 29 42 41
+	   72 72 61 79 41
+	   61 6B 20 4F 62
+	   61 6D 61 0A 32
+	   29 4A 6F 65 20
+	   42 69 64 64 65
+	   6E 20 0A 33 29
+	   54 72 75 6D 70
+	   20 0A 34 29 48
+	   65 6E 72 79 20
+	   43 6C 69 6E 74
+	   6F 6E 00
+ 00000E0F = 00000062		     q3=($-Level1Q-q1-q2)
+ 00000E0F  51 34 29 2E 49		   BYTE "Q4).If speed of car is 10km/h, how far will it reach in 3 hours?",0ah,"1) 25km",0ah,"2) 30km",0ah,"3) 13km",0ah,"4) 50km",0 ;5
+	   66 20 73 70 65
+	   65 64 20 6F 66
+	   20 63 61 72 20
+	   69 73 20 31 30
+	   6B 6D 2F 68 2C
+	   20 68 6F 77 20
+	   66 61 72 20 77
+	   69 6C 6C 20 69
+	   74 20 72 65 61
+	   63 68 20 69 6E
+	   20 33 20 68 6F
+	   75 72 73 3F 0A
+	   31 29 20 32 35
+	   6B 6D 0A 32 29
+	   20 33 30 6B 6D
+	   0A 33 29 20 31
+	   33 6B 6D 0A 34
+	   29 20 35 30 6B
+	   6D 00
+ 00000E70 = 00000061		     q4=($-Level1Q-q1-q2-q3)
+ 00000E70  51 35 29 2E 48		   BYTE "Q5).How many continents are there on Earth",0ah,"1) 20",0ah,"2) 15",0ah,"3) 7",0ah,"4) 50",0 ;132
+	   6F 77 20 6D 61
+	   6E 79 20 63 6F
+	   6E 74 69 6E 65
+	   6E 74 73 20 61
+	   72 65 20 74 68
+	   65 72 65 20 6F
+	   6E 20 45 61 72
+	   74 68 0A 31 29
+	   20 32 30 0A 32
+	   29 20 31 35 0A
+	   33 29 20 37 0A
+	   34 29 20 35 30
+	   00
+ 00000EB2 = 00000042			 q5=($-Level1Q-q1-q2-q3-q4)
+ 00000EB2  51 36 29 2E 57		   BYTE "Q6).Who was the first man on moon?",0ah,"1)Lance Armstrong",0ah,"2)George Washington",0ah,"3)Neil Armstrong",0ah,"4)Newton",0
+	   68 6F 20 77 61
+	   73 20 74 68 65
+	   20 66 69 72 73
+	   74 20 6D 61 6E
+	   20 6F 6E 20 6D
+	   6F 6F 6E 3F 0A
+	   31 29 4C 61 6E
+	   63 65 20 41 72
+	   6D 73 74 72 6F
+	   6E 67 0A 32 29
+	   47 65 6F 72 67
+	   65 20 57 61 73
+	   68 69 6E 67 74
+	   6F 6E 0A 33 29
+	   4E 65 69 6C 20
+	   41 72 6D 73 74
+	   72 6F 6E 67 0A
+	   34 29 4E 65 77
+	   74 6F 6E 00
+ 00000F15 = 00000063			 q6=($-Level1Q-q1-q2-q3-q4-q5)
+ 00000F15  51 37 29 2E 48		   BYTE "Q7).How many months in a year have 28 days",0ah,"1) 1 ",0ah,"2) 3",0ah,"3) 4",0ah,"4) 1,once in every 4 years",0
+	   6F 77 20 6D 61
+	   6E 79 20 6D 6F
+	   6E 74 68 73 20
+	   69 6E 20 61 20
+	   79 65 61 72 20
+	   68 61 76 65 20
+	   32 38 20 64 61
+	   79 73 0A 31 29
+	   20 31 20 0A 32
+	   29 20 33 0A 33
+	   29 20 34 0A 34
+	   29 20 31 2C 6F
+	   6E 63 65 20 69
+	   6E 20 65 76 65
+	   72 79 20 34 20
+	   79 65 61 72 73
+	   00
+ 00000F6B = 00000056			 q7=($-Level1Q-q1-q2-q3-q4-q5-q6)
+ 00000F6B  51 38 29 2E 57			BYTE "Q8).Which one of the following produces honey? ",0ah,"1) Wasp",0ah,"2) Bee",0ah,"3) Hornet",0ah,"4) Flying ant",0
+	   68 69 63 68 20
+	   6F 6E 65 20 6F
+	   66 20 74 68 65
+	   20 66 6F 6C 6C
+	   6F 77 69 6E 67
+	   20 70 72 6F 64
+	   75 63 65 73 20
+	   68 6F 6E 65 79
+	   3F 20 0A 31 29
+	   20 57 61 73 70
+	   0A 32 29 20 42
+	   65 65 0A 33 29
+	   20 48 6F 72 6E
+	   65 74 0A 34 29
+	   20 46 6C 79 69
+	   6E 67 20 61 6E
+	   74 00
+ 00000FC2 = 00000057			 q8=($-Level1Q-q1-q2-q3-q4-q5-q6-q7)
+ 00000FC2  51 39 29 2E 49			BYTE "Q9).If the time is 9pm, and duration of flight is 6 hours, what will be the time at arrival? ",0ah,"1) 2pm",0ah,"2) 6pm",0ah,"3) 9am",0ah,"4) 3am",0
+	   66 20 74 68 65
+	   20 74 69 6D 65
+	   20 69 73 20 39
+	   70 6D 2C 20 61
+	   6E 64 20 64 75
+	   72 61 74 69 6F
+	   6E 20 6F 66 20
+	   66 6C 69 67 68
+	   74 20 69 73 20
+	   36 20 68 6F 75
+	   72 73 2C 20 77
+	   68 61 74 20 77
+	   69 6C 6C 20 62
+	   65 20 74 68 65
+	   20 74 69 6D 65
+	   20 61 74 20 61
+	   72 72 69 76 61
+	   6C 3F 20 0A 31
+	   29 20 32 70 6D
+	   0A 32 29 20 36
+	   70 6D 0A 33 29
+	   20 39 61 6D 0A
+	   34 29 20 33 61
+	   6D 00
+ 0000103C = 0000007A			 q9=($-Level1Q-q1-q2-q3-q4-q5-q6-q7-q8)
+ 0000103C  51 31 30 29 2E			BYTE "Q10).What is the value of 20mod2?",0ah,"1) 10",0ah,"2) 5",0ah,"3) 0",0ah,"4) 1",0
+	   57 68 61 74 20
+	   69 73 20 74 68
+	   65 20 76 61 6C
+	   75 65 20 6F 66
+	   20 32 30 6D 6F
+	   64 32 3F 0A 31
+	   29 20 31 30 0A
+	   32 29 20 35 0A
+	   33 29 20 30 0A
+	   34 29 20 31 00
+ 00001073 = 00000037		     q10=($-Level1Q-q1-q2-q3-q4-q5-q6-q7-q8-q9)
+
+ 00001073  000001F5 [		buffer2 BYTE BUFFER_SIZE DUP(10)
+	    0A
+	   ]
+ 00001268 70 6C 61 79 65	f_name BYTE "players.txt",0
+	   72 73 2E 74 78
+	   74 00
+ 00001274 00000000		f_handle HANDLE ?
+ 00001278 00000000		stringlength dword ?
+ 0000127C 63 61 6E 6E 6F	str1 byte  "cannot open",0
+	   74 20 6F 70 65
+	   6E 00
+ 00001288 0D 0A			space byte 0dh,0ah
+
+
+ 00000000			.code
+ 00000000			main PROC
+ 00000000  B8 0000004F		mov eax,white+(red*16)
+ 00000005  E8 00000000 E	call settextcolor
+
+				;///////FILING - APPEND MODE////////////////
+				;;START OF PROGRAM
+ 0000000A  BA 00001268 R	mov edx,offset f_name
+ 0000000F  E8 000007C8		call outputfile
+ 00000014  A3 00001274 R	mov f_handle,eax
+ 00000019  83 F8 FF		cmp eax,INVALID_HANDLE_VALUE     
+ 0000001C  75 0C		jne file_ok
+ 0000001E  BA 0000127C R	mov edx,offset str1
+ 00000023  E8 00000000 E	call writestring
+ 00000028  EB 68		jmp quit
+
+ 0000002A			file_ok:
+ 0000002A  BA 000000CC R	mov edx,offset PLAYER
+ 0000002F  E8 00000000 E	call writestring
+ 00000034  B9 000001F5		mov ecx,BUFFER_SIZE
+ 00000039  BA 00001073 R	mov edx,offset buffer2
+ 0000003E  E8 00000000 E	call readstring
+ 00000043  A3 00001278 R	mov stringlength,eax
+
+				INVOKE SetFilePointer,
+				f_Handle,0,0,FILE_END
+
+ 00000059  A1 00001274 R	mov eax,f_handle
+ 0000005E  BA 00001288 R	mov edx,offset space
+ 00000063  B9 00000001		mov ecx,1
+ 00000068  E8 00000000 E	call writetofile
+
+ 0000006D  A1 00001274 R	mov eax,f_handle
+ 00000072  BA 00001073 R	mov edx,offset buffer2
+ 00000077  8B 0D 00001278 R	mov ecx,stringlength
+ 0000007D  E8 00000000 E	call writetofile
+
+ 00000082  E8 00000000 E	call crlf
+
+				INVOKE CloseHandle, fileHandle	;FILING
+ 00000092			quit:
+ 00000092  E8 0000072B		call spaces
+ 00000097  BA 000001DD R	mov edx,offset string5
+ 0000009C  E8 00000000 E	call writestring
+ 000000A1  E8 00000000 E	call crlf
+ 000000A6  E8 00000717		call spaces
+ 000000AB  BA 000001F8 R	mov edx,offset string6
+ 000000B0  E8 00000000 E	call writestring
+ 000000B5  E8 00000000 E	call crlf
+ 000000BA  E8 00000703		call spaces
+ 000000BF  BA 000002D6 R	mov edx,offset string7
+ 000000C4  E8 00000000 E	call writestring
+ 000000C9  E8 00000000 E	call crlf
+ 000000CE  E8 00000000 E	call readchar
+ 000000D3  E8 00000000 E	call clrscr								;MAIN MENU
+ 000000D8  B8 00000000		mov eax,0
+ 000000DD  BE 00000000		mov esi,0
+ 000000E2  C7 86 00000054 R	mov quesL1[esi],q1
+	   0000003F
+ 000000EC  C7 86 00000058 R	mov quesL1[esi+4],q2
+	   00000040
+ 000000F6  C7 86 0000005C R	mov quesL1[esi+8],q3
+	   00000062
+ 00000100  C7 86 00000060 R	mov quesL1[esi+12],q4
+	   00000061
+ 0000010A  C7 86 00000064 R	mov quesL1[esi+16],q5
+	   00000042
+ 00000114  C7 86 00000068 R	mov quesL1[esi+20],q6
+	   00000063
+ 0000011E  C7 86 0000006C R	mov quesL1[esi+24],q7
+	   00000056
+ 00000128  C7 86 00000070 R	mov quesL1[esi+28],q8
+	   00000057
+ 00000132  C7 86 00000074 R	mov quesL1[esi+32],q9
+	   0000007A
+ 0000013C  C7 86 00000078 R	mov quesL1[esi+36],q10	
+	   00000037
+ 00000146  BE 00000000		mov esi,0
+ 0000014B  C7 86 0000007C R	mov quesL2[esi],q1A
+	   0000004F
+ 00000155  C7 86 00000080 R	mov quesL2[esi+4],q2A
+	   00000048
+ 0000015F  C7 86 00000084 R	mov quesL2[esi+8],q3A
+	   0000009A
+ 00000169  C7 86 00000088 R	mov quesL2[esi+12],q4A
+	   000000A8
+ 00000173  C7 86 0000008C R	mov quesL2[esi+16],q5A
+	   000000A3
+ 0000017D  C7 86 00000090 R	mov quesL2[esi+20],q6A
+	   0000004D
+ 00000187  C7 86 00000094 R	mov quesL2[esi+24],q7A
+	   00000089
+ 00000191  C7 86 00000098 R	mov quesL2[esi+28],q8A
+	   0000007F
+ 0000019B  C7 86 0000009C R	mov quesL2[esi+32],q9A
+	   00000078
+ 000001A5  C7 86 000000A0 R	mov quesL2[esi+36],q10A
+	   00000053
+ 000001AF  BE 00000000		mov esi,0
+ 000001B4  C7 86 000000A4 R	mov quesL3[esi],q1C
+	   00000058
+ 000001BE  C7 86 000000A8 R	mov quesL3[esi+4],q2C
+	   000000B3
+ 000001C8  C7 86 000000AC R	mov quesL3[esi+8],q3C
+	   00000096
+ 000001D2  C7 86 000000B0 R	mov quesL3[esi+12],q4C
+	   000000D9
+ 000001DC  C7 86 000000B4 R	mov quesL3[esi+16],q5C
+	   00000060
+ 000001E6  C7 86 000000B8 R	mov quesL3[esi+20],q6C
+	   000000D6
+ 000001F0  C7 86 000000BC R	mov quesL3[esi+24],q7C
+	   00000048
+ 000001FA  C7 86 000000C0 R	mov quesL3[esi+28],q8C
+	   0000005C
+ 00000204  C7 86 000000C4 R	mov quesL3[esi+32],q9C
+	   00000070
+ 0000020E  C7 86 000000C8 R	mov quesL3[esi+36],q10C						;ADDRESSES STORED
+	   00000063
+
+ 00000218  E8 00000000 E	call clrscr
+ 0000021D  BA 00000316 R	mov edx,offset Opt
+ 00000222  E8 00000000 E	call WriteString
+ 00000227  E8 00000000 E	Call ReadDec							
+ 0000022C  83 F8 01		cmp eax,1
+ 0000022F  0F 84 0000008F	je Quiz   ;///PLAYERS JUMPS TO QUIZ IF CHOICE==1
+
+
+
+				;///CALLING IQ LEVEL FUNCTIONS////////
+				INVOKE LEVEL1,ADDR quesL1,ADDR Level1Q,scoreL1
+ 0000024A  66| B8 07D0		mov ax,2000
+ 0000024E  E8 00000000 E	call Delay 
+ 00000253  E8 00000000 E	call clrscr
+				INVOKE LEVEL2,ADDR quesL2,ADDR Level2Q,scoreL2
+ 0000026D  66| B8 07D0		mov ax,2000
+ 00000271  E8 00000000 E	call Delay
+ 00000276  E8 00000000 E	call clrscr
+				INVOKE LEVEL3,ADDR quesL3,ADDR Level3Q,scoreL3
+ 00000290  E8 00000000 E	call clrscr
+
+
+ 00000295  66| B8 0000		mov ax,0
+ 00000299  A0 0000014F R	mov al,scoreL1
+ 0000029E  66| 50		push ax
+ 000002A0  A0 00000150 R	mov al,scoreL2
+ 000002A5  66| 50		push ax
+ 000002A7  A0 00000151 R	mov al,scoreL3
+ 000002AC  66| 50		push ax
+ 000002AE  E8 000001F3		call Percentage   ;//PERCENTAGE FUNCTION TO CALCULATE PERCENTAGE OF IQ
+ 000002B3  66| A1		mov ax,TotalScore
+	   00000365 R
+ 000002B9  50			push eax
+ 000002BA  E8 00000497		call standing
+ 000002BF  E9 00000190		jmp exi
+
+
+
+ 000002C4			Quiz:				;QUIZ FUNCTIONS CALLED
+				INVOKE QLEVEL1,ADDR quesL1,ADDR Level1Q,scoreL1
+ 000002D9  66| B8 07D0		mov ax,2000
+ 000002DD  E8 00000000 E	call Delay
+ 000002E2  E8 00000000 E	call clrscr
+ 000002E7  A0 00000364 R	mov al,life
+ 000002EC  3C 00		cmp al,0
+ 000002EE  0F 84 000000DC	je I1
+ 000002F4  E8 00000000 E	call Crlf
+ 000002F9  E8 0000015D		call reward
+ 000002FE  E8 00000000 E	call crlf
+ 00000303  66| B8 07D0		mov ax,2000
+ 00000307  E8 00000000 E	call Delay 
+ 0000030C  E8 00000000 E	call clrscr
+
+				INVOKE QLEVEL2,ADDR quesL2,ADDR Level2Q,scoreL2
+ 00000326  66| B8 07D0		mov ax,2000
+ 0000032A  E8 00000000 E	call Delay
+ 0000032F  E8 00000000 E	call clrscr
+ 00000334  A0 00000364 R	mov al,life
+ 00000339  3C 00		cmp al,0
+ 0000033B  0F 84 000000B9	je I2
+				;call Crlf
+ 00000341  E8 00000115		call reward
+				;call crlf
+ 00000346  66| B8 07D0		mov ax,2000
+ 0000034A  E8 00000000 E	call Delay
+ 0000034F  E8 00000000 E	call clrscr 
+
+				INVOKE QLEVEL3,ADDR quesL3,ADDR Level3Q,scoreL3
+ 00000369  66| B8 03E8		mov ax,1000
+ 0000036D  E8 00000000 E	call Delay
+ 00000372  E8 00000000 E	call clrscr
+ 00000377  A0 00000364 R	mov al,life
+ 0000037C  3C 00		cmp al,0
+ 0000037E  0F 84 000000A1	je I3
+				;call Crlf
+ 00000384  E8 000000D2		call reward
+ 00000389  E8 00000000 E	call crlf
+ 0000038E  66| B8 07D0		mov ax,2000
+ 00000392  E8 00000000 E	call Delay 
+ 00000397  E8 00000000 E	call clrscr
+
+ 0000039C  B8 00000000		mov eax,0
+ 000003A1  A0 0000014F R	mov al,scoreL1
+ 000003A6  02 05 00000150 R	add al,scoreL2
+ 000003AC  02 05 00000151 R	add al,scoreL3
+ 000003B2  E8 00000000 E	call Crlf
+ 000003B7  BA 000002F4 R	mov edx,offset QuizScore
+ 000003BC  E8 00000000 E	call WriteString
+ 000003C1  E8 00000000 E	call WriteDec
+ 000003C6  E8 00000000 E	call Crlf
+ 000003CB  E9 00000084		jmp exi
+ 000003D0			I1:
+ 000003D0  E8 00000000 E	call clrscr
+ 000003D5  B8 00000000		mov eax,0
+ 000003DA  A0 0000014F R	mov al,scoreL1
+ 000003DF  E8 00000000 E	call crlf
+ 000003E4  BA 000002F4 R	mov edx,offset QuizScore
+ 000003E9  E8 00000000 E	call WriteString
+ 000003EE  E8 00000000 E	call WriteDec
+ 000003F3  E8 00000000 E	call Crlf
+ 000003F8  EB 5A		jmp exi
+
+ 000003FA			I2:
+ 000003FA  B8 00000000		mov eax,0
+ 000003FF  A0 0000014F R	mov al,scoreL1
+ 00000404  02 05 00000150 R	add al,scoreL2
+ 0000040A  E8 00000000 E	call Crlf
+ 0000040F  BA 000002F4 R	mov edx,offset QuizScore
+ 00000414  E8 00000000 E	call WriteString
+ 00000419  E8 00000000 E	call WriteDec
+ 0000041E  E8 00000000 E	call Crlf
+ 00000423  EB 2F		jmp exi
+
+ 00000425			I3:
+ 00000425  B8 00000000		mov eax,0
+ 0000042A  A0 0000014F R	mov al,scoreL1
+ 0000042F  02 05 00000150 R	add al,scoreL2
+ 00000435  02 05 00000151 R	add al,scoreL3
+ 0000043B  E8 00000000 E	call Crlf
+ 00000440  BA 000002F4 R	mov edx,offset QuizScore
+ 00000445  E8 00000000 E	call WriteString
+ 0000044A  E8 00000000 E	call WriteDec
+ 0000044F  E8 00000000 E	call Crlf
+ 00000454			exi:
+				exit
+ 0000045B			main ENDP
+
+				;/////////MAIN ENDP
+
+
+
+				;//FUNCTIONS DEFINED
+
+ 0000045B			reward Proc		;//REWARD WILL BE DISPLAYED AFTER PLAYER CROSSES LEVEL
+ 0000045B  60			pushad
+ 0000045C  B2 45		mov dl,69
+ 0000045E  B6 12		mov dh,18
+ 00000460  E8 00000000 E	call gotoxy
+ 00000465  BB 00000000		mov ebx,0
+ 0000046A  BE 00000000		mov esi,0
+ 0000046F			L5:
+ 0000046F  3B 1D 00000367 R	cmp ebx,count
+ 00000475  74 1E		jz Rw
+ 00000477  8A 86 000001C1 R	mov al,string4[esi]
+ 0000047D  E8 00000000 E	call WriteChar
+ 00000482  B8 00000096		mov eax,150
+ 00000487  E8 00000000 E	call Delay
+ 0000048C  46			inc esi
+ 0000048D  FF 0D 00000367 R	dec count
+ 00000493  EB DA		jmp L5
+
+ 00000495			Rw:
+ 00000495  B8 0000001B		mov eax,27
+ 0000049A  A3 00000367 R	mov count,eax
+ 0000049F  B8 00000000		mov eax,0
+ 000004A4  61			popad
+ 000004A5  C3			ret
+ 000004A6			reward ENDP
+
+
+
+
+
+ 000004A6			Percentage Proc
+ 000004A6  55			push ebp
+ 000004A7  8B EC		mov ebp,esp
+ 000004A9  B8 00000000		mov eax,0
+ 000004AE  66| 8B 45 08		mov ax,[ebp+8]		;RESTORING SCORES FROM STACK
+ 000004B2  66| 03 45 0A		add ax,[ebp+10]
+ 000004B6  66| 03 45 0C		add ax,[ebp+12]
+ 000004BA  66| BB 0064		mov bx,100
+ 000004BE  66| F7 E3		mul bx
+ 000004C1  66| BB 003C		mov bx,60
+ 000004C5  66| F7 F3		div bx
+ 000004C8  66| A3		mov TotalScore,ax
+	   00000365 R
+ 000004CE  BA 00000306 R	mov edx,offset finalmsg
+ 000004D3  E8 00000000 E	call WriteString
+ 000004D8  66| A1		mov ax,TotalScore
+	   00000365 R
+ 000004DE  E8 00000000 E	call writedec
+ 000004E3  B0 25		mov al,'%'
+ 000004E5  E8 00000000 E	call WriteChar
+ 000004EA  E8 00000000 E	call Crlf
+ 000004EF  5D			pop ebp
+ 000004F0  C3			ret 
+ 000004F1			Percentage ENDP
+
+
+
+
+				;//////IQ GAME LEVELS
+ 000004F1			LEVEL3 PROC, ques3:PTR DWORD, lev3q:PTR BYTE,scor3:BYTE
+ 000004F4  60			pushad
+ 000004F5  8B 7D 08		mov edi,ques3              ;ques array
+ 000004F8  8B 6D 0C		mov ebp,lev3q			   ;
+ 000004FB  BE 0000013B R	mov esi,offset arr3
+ 00000500  BB 00000000		mov ebx,0
+ 00000505  B9 0000000A		mov ecx,10
+ 0000050A			L3:
+ 0000050A  8B D5		mov edx,ebp
+ 0000050C  E8 00000000 E	call writestring
+ 00000511  E8 00000000 E	call crlf
+ 00000516  03 2F		add ebp,[edi]
+ 00000518  83 C7 04		add edi,4
+ 0000051B  E8 00000000 E	call readdec
+ 00000520  3A 06		cmp al,[esi]
+ 00000522  75 03		JNE E1
+ 00000524  80 C3 03		add bl,3
+ 00000527			E1:
+ 00000527  46			inc esi
+ 00000528  E2 E0		loop L3
+ 0000052A  E8 00000000 E	call crlf
+ 0000052F  BA 0000017C R	mov edx,offset msg4
+ 00000534  E8 00000000 E	call writestring
+ 00000539  8A C3		mov al,bl
+ 0000053B  E8 00000000 E	call writedec
+ 00000540  88 1D 00000151 R	mov scoreL3,bl
+ 00000546  C6 45 10 00		mov scor3,0
+ 0000054A  61			popad
+				ret
+ 0000054F			LEVEL3 ENDP
+
+
+
+
+ 0000054F			LEVEL2 PROC, ques:PTR DWORD, lev2q:PTR BYTE,scor2:BYTE
+ 00000552  60			pushad
+ 00000553  8B 7D 08		mov edi,ques
+ 00000556  8B 6D 0C		mov ebp,lev2q
+ 00000559  BE 00000131 R	mov esi,offset arr2
+ 0000055E  BB 00000000		mov ebx,0
+ 00000563  B9 0000000A		mov ecx,10
+ 00000568			L2:
+ 00000568  8B D5		mov edx,ebp
+ 0000056A  E8 00000000 E	call writestring
+ 0000056F  E8 00000000 E	call crlf
+ 00000574  03 2F		add ebp,[edi]
+ 00000576  83 C7 04		add edi,4
+ 00000579  E8 00000000 E	call readdec
+ 0000057E  3A 06		cmp al,[esi]
+ 00000580  75 03		JNE E1
+ 00000582  80 C3 02		add bl,2
+ 00000585			E1:
+ 00000585  46			inc esi
+ 00000586  E2 E0		loop L2
+ 00000588  E8 00000000 E	call crlf
+ 0000058D  BA 00000167 R	mov edx,offset msg3
+ 00000592  E8 00000000 E	call writestring
+ 00000597  8A C3		mov al,bl
+ 00000599  E8 00000000 E	call writedec
+ 0000059E  88 1D 00000150 R	mov scoreL2,bl
+ 000005A4  C6 45 10 00		mov scor2,0
+ 000005A8  61			popad
+				ret
+ 000005AD			LEVEL2 ENDP
+
+
+
+ 000005AD			LEVEL1 PROC, quesA:PTR DWORD, lev1q:PTR BYTE,scor:BYTE
+ 000005B0  60			pushad
+ 000005B1  8B 7D 08		mov edi,quesA
+ 000005B4  8B 6D 0C		mov ebp,lev1q
+ 000005B7  BE 00000127 R	mov esi,offset arr1
+ 000005BC  BB 00000000		mov ebx,0
+ 000005C1  B9 0000000A		mov ecx,10
+ 000005C6			L7:
+ 000005C6  8B D5		mov edx,ebp
+ 000005C8  E8 00000000 E	call writestring
+ 000005CD  E8 00000000 E	call crlf
+ 000005D2  03 2F		add ebp,[edi]
+ 000005D4  83 C7 04		add edi,4
+ 000005D7  E8 00000000 E	call readdec
+ 000005DC  3A 06		cmp al,[esi]
+ 000005DE  75 02		JNE K
+ 000005E0  FE C3		inc bl
+ 000005E2			K:
+ 000005E2  46			inc esi
+ 000005E3  E2 E1		loop L7
+ 000005E5  E8 00000000 E	call crlf
+ 000005EA  BA 00000152 R	mov edx,offset msg1
+ 000005EF  E8 00000000 E	call writestring
+ 000005F4  8A C3		mov al,bl
+ 000005F6  E8 00000000 E	call WriteDec
+ 000005FB  88 1D 0000014F R	mov scoreL1,bl
+ 00000601  C6 45 10 00		mov scor,0
+ 00000605  61			popad
+				ret
+ 0000060A			LEVEL1 ENDP
+
+
+
+
+				;//////QUIZ GAME QUES
+ 0000060A			QLEVEL3 PROC, ques3:PTR DWORD, lev3q:PTR BYTE,scor3:BYTE
+ 0000060D  60			pushad
+ 0000060E  8B 7D 08		mov edi,ques3
+ 00000611  8B 6D 0C		mov ebp,lev3q
+ 00000614  BE 0000013B R	mov esi,offset arr3
+ 00000619  BB 00000000		mov ebx,0
+ 0000061E  B9 0000000A		mov ecx,10
+ 00000623			L3:
+ 00000623  8B D5		mov edx,ebp
+ 00000625  E8 00000000 E	call writestring
+ 0000062A  E8 00000000 E	call crlf
+ 0000062F  03 2F		add ebp,[edi]
+ 00000631  83 C7 04		add edi,4
+ 00000634  E8 00000000 E	call readdec
+ 00000639  3A 06		cmp al,[esi]
+ 0000063B  75 05		JNE E1
+ 0000063D  80 C3 03		add bl,3
+ 00000640  EB 0F		jmp E2
+ 00000642			E1:
+ 00000642  FE 0D 00000364 R	dec life
+ 00000648  A0 00000364 R	mov al,life
+ 0000064D  3C 00		cmp al,0
+ 0000064F  74 03		je S 
+ 00000651			E2:
+ 00000651  46			inc esi
+ 00000652  E2 CF		loop L3
+ 00000654			S:
+ 00000654  E8 00000000 E	call crlf
+ 00000659  BA 0000017C R	mov edx,offset msg4
+ 0000065E  E8 00000000 E	call writestring
+ 00000663  8A C3		mov al,bl
+ 00000665  E8 00000000 E	call writedec
+ 0000066A  88 1D 00000151 R	mov scoreL3,bl
+ 00000670  C6 45 10 00		mov scor3,0
+ 00000674  61			popad
+				ret
+ 00000679			QLEVEL3 ENDP
+
+				;/////LEVEL 2 QUESTIONS
+ 00000679			QLEVEL2 PROC, ques:PTR DWORD, lev2q:PTR BYTE,scor2:BYTE
+ 0000067C  60			pushad
+ 0000067D  8B 7D 08		mov edi,ques
+ 00000680  8B 6D 0C		mov ebp,lev2q
+ 00000683  BE 00000131 R	mov esi,offset arr2
+ 00000688  BB 00000000		mov ebx,0
+ 0000068D  B9 0000000A		mov ecx,10
+ 00000692			L2:
+ 00000692  8B D5		mov edx,ebp
+ 00000694  E8 00000000 E	call writestring
+ 00000699  E8 00000000 E	call crlf
+ 0000069E  03 2F		add ebp,[edi]
+ 000006A0  83 C7 04		add edi,4
+ 000006A3  E8 00000000 E	call readdec
+ 000006A8  3A 06		cmp al,[esi]
+ 000006AA  75 05		JNE E1
+ 000006AC  80 C3 02		add bl,2
+ 000006AF  EB 0F		jmp E2
+ 000006B1			E1:
+ 000006B1  FE 0D 00000364 R	dec life
+ 000006B7  A0 00000364 R	mov al,life
+ 000006BC  3C 00		cmp al,0
+ 000006BE  74 03		je S2
+ 000006C0			E2:
+ 000006C0  46			inc esi
+ 000006C1  E2 CF		loop L2
+ 000006C3			S2:
+ 000006C3  E8 00000000 E	call crlf
+ 000006C8  BA 00000167 R	mov edx,offset msg3
+ 000006CD  E8 00000000 E	call writestring
+ 000006D2  8A C3		mov al,bl
+ 000006D4  E8 00000000 E	call writedec
+ 000006D9  88 1D 00000150 R	mov scoreL2,bl
+ 000006DF  C6 45 10 00		mov scor2,0
+ 000006E3  61			popad
+				ret
+ 000006E8			QLEVEL2 ENDP
+
+
+				;//////LEVEL 1 QUESTIONS
+ 000006E8			QLEVEL1 PROC, quesA:PTR DWORD, lev1q:PTR BYTE,scor:BYTE
+ 000006EB  60			pushad
+ 000006EC  8B 7D 08		mov edi,quesA
+ 000006EF  8B 6D 0C		mov ebp,lev1q
+ 000006F2  BE 00000127 R	mov esi,offset arr1
+ 000006F7  BB 00000000		mov ebx,0
+ 000006FC  B9 0000000A		mov ecx,10
+ 00000701			L7:
+ 00000701  8B D5			mov edx,ebp
+ 00000703  E8 00000000 E		call writestring
+ 00000708  E8 00000000 E		call crlf
+ 0000070D  03 2F			add ebp,[edi]
+ 0000070F  83 C7 04			add edi,4
+ 00000712  E8 00000000 E	call readdec
+ 00000717  3A 06		cmp al,[esi]
+ 00000719  75 04		JNE K
+ 0000071B  FE C3		inc bl
+ 0000071D  EB 0F		jmp L
+ 0000071F			K:
+ 0000071F  FE 0D 00000364 R	dec life
+ 00000725  A0 00000364 R	mov al,life
+ 0000072A  3C 00		cmp al,0
+ 0000072C  74 03		je S3
+ 0000072E			L:
+ 0000072E  46			inc esi
+ 0000072F  E2 D0		loop L7
+ 00000731			S3:
+ 00000731  E8 00000000 E	call crlf
+ 00000736  BA 00000152 R	mov edx,offset msg1
+ 0000073B  E8 00000000 E	call writestring
+ 00000740  8A C3		mov al,bl
+ 00000742  E8 00000000 E	call WriteDec
+ 00000747  88 1D 0000014F R	mov scoreL1,bl
+ 0000074D  C6 45 10 00		mov scor,0
+ 00000751  61			popad
+				ret
+ 00000756			QLEVEL1 ENDP
+
+				;//////IQ STANDING
+ 00000756			standing PROC
+ 00000756  55			push ebp
+ 00000757  8B EC		mov ebp,esp
+ 00000759  8B 45 08		mov eax,[ebp+8]
+ 0000075C  66| A3		mov TotalScore,ax
+	   00000365 R
+ 00000762  66| 83 3D		cmp TotalScore,100
+	   00000365 R 64
+ 0000076A  74 25		JE EQUAL
+ 0000076C  66| 83 3D		cmp TotalScore,60
+	   00000365 R 3C
+ 00000774  7D 36		JGE GREATER
+ 00000776  BA 000001B3 R	mov edx,offset string3
+ 0000077B  E8 00000000 E	call crlf
+ 00000780  E8 00000000 E	call writestring
+ 00000785  E8 00000000 E	call crlf
+				exit
+ 00000791			EQUAL:
+ 00000791  BA 00000191 R	mov edx,offset string1
+ 00000796  E8 00000000 E	call crlf
+ 0000079B  E8 00000000 E	call writestring
+ 000007A0  E8 00000000 E	call crlf
+				exit
+ 000007AC			GREATER:
+ 000007AC  BA 000001A4 R	mov edx, offset string2
+ 000007B1  E8 00000000 E	call crlf
+ 000007B6  E8 00000000 E	call writestring
+ 000007BB  E8 00000000 E	call crlf
+ 000007C0  5D			pop ebp
+ 000007C1  C3			ret
+ 000007C2			standing endp
+
+ 000007C2			spaces PROC
+ 000007C2  E8 00000000 E	call crlf
+ 000007C7  E8 00000000 E	call crlf
+ 000007CC  E8 00000000 E	call crlf
+ 000007D1  BA 000000E0 R	mov edx,offset spaces1
+ 000007D6  E8 00000000 E	call writestring
+ 000007DB  C3			ret
+ 000007DC			spaces endp
+
+ 000007DC			outputfile proc
+				invoke createfile,
+				addr f_name,
+				generic_write,
+				do_not_share,
+				null,
+				OPEN_existing,
+				file_attribute_normal,
+				0
+ 000007F8  C3			ret
+ 000007F9			outputfile endp
+
+				END main
+Microsoft (R) Macro Assembler Version 14.32.31332.0	    12/11/22 14:02:52
+My First Projec					     Symbols 2 - 1
+
+
+
+
+Structures and Unions:
+
+                N a m e                  Size
+                                         Offset      Type
+
+CONSOLE_CURSOR_INFO  . . . . . .	 00000008
+  dwSize . . . . . . . . . . . .	 00000000	 DWord
+  bVisible . . . . . . . . . . .	 00000004	 DWord
+CONSOLE_SCREEN_BUFFER_INFO . . .	 00000016
+  dwSize . . . . . . . . . . . .	 00000000	 DWord
+  dwCursorPosition . . . . . . .	 00000004	 DWord
+  wAttributes  . . . . . . . . .	 00000008	 Word
+  srWindow . . . . . . . . . . .	 0000000A	 QWord
+  dwMaximumWindowSize  . . . . .	 00000012	 DWord
+COORD  . . . . . . . . . . . . .	 00000004
+  X  . . . . . . . . . . . . . .	 00000000	 Word
+  Y  . . . . . . . . . . . . . .	 00000002	 Word
+FILETIME . . . . . . . . . . . .	 00000008
+  loDateTime . . . . . . . . . .	 00000000	 DWord
+  hiDateTime . . . . . . . . . .	 00000004	 DWord
+FOCUS_EVENT_RECORD . . . . . . .	 00000004
+  bSetFocus  . . . . . . . . . .	 00000000	 DWord
+FPU_ENVIRON  . . . . . . . . . .	 0000001C
+  controlWord  . . . . . . . . .	 00000000	 Word
+  statusWord . . . . . . . . . .	 00000004	 Word
+  tagWord  . . . . . . . . . . .	 00000008	 Word
+  instrPointerOffset . . . . . .	 0000000C	 DWord
+  instrPointerSelector . . . . .	 00000010	 DWord
+  operandPointerOffset . . . . .	 00000014	 DWord
+  operandPointerSelector . . . .	 00000018	 Word
+INPUT_RECORD . . . . . . . . . .	 00000014
+  EventType  . . . . . . . . . .	 00000000	 Word
+  Event  . . . . . . . . . . . .	 00000004	 XmmWord
+  bKeyDown . . . . . . . . . . .	 00000000	 DWord
+  wRepeatCount . . . . . . . . .	 00000004	 Word
+  wVirtualKeyCode  . . . . . . .	 00000006	 Word
+  wVirtualScanCode . . . . . . .	 00000008	 Word
+  uChar  . . . . . . . . . . . .	 0000000A	 Word
+  UnicodeChar  . . . . . . . . .	 00000000	 Word
+  AsciiChar  . . . . . . . . . .	 00000000	 Byte
+  dwControlKeyState  . . . . . .	 0000000C	 DWord
+  dwMousePosition  . . . . . . .	 00000000	 DWord
+  dwButtonState  . . . . . . . .	 00000004	 DWord
+  dwMouseControlKeyState . . . .	 00000008	 DWord
+  dwEventFlags . . . . . . . . .	 0000000C	 DWord
+  dwSize . . . . . . . . . . . .	 00000000	 DWord
+  dwCommandId  . . . . . . . . .	 00000000	 DWord
+  bSetFocus  . . . . . . . . . .	 00000000	 DWord
+KEY_EVENT_RECORD . . . . . . . .	 00000010
+  bKeyDown . . . . . . . . . . .	 00000000	 DWord
+  wRepeatCount . . . . . . . . .	 00000004	 Word
+  wVirtualKeyCode  . . . . . . .	 00000006	 Word
+  wVirtualScanCode . . . . . . .	 00000008	 Word
+  uChar  . . . . . . . . . . . .	 0000000A	 Word
+  UnicodeChar  . . . . . . . . .	 00000000	 Word
+  AsciiChar  . . . . . . . . . .	 00000000	 Byte
+  dwControlKeyState  . . . . . .	 0000000C	 DWord
+MENU_EVENT_RECORD  . . . . . . .	 00000004
+  dwCommandId  . . . . . . . . .	 00000000	 DWord
+MOUSE_EVENT_RECORD . . . . . . .	 00000010
+  dwMousePosition  . . . . . . .	 00000000	 DWord
+  dwButtonState  . . . . . . . .	 00000004	 DWord
+  dwMouseControlKeyState . . . .	 00000008	 DWord
+  dwEventFlags . . . . . . . . .	 0000000C	 DWord
+SMALL_RECT . . . . . . . . . . .	 00000008
+  Left . . . . . . . . . . . . .	 00000000	 Word
+  Top  . . . . . . . . . . . . .	 00000002	 Word
+  Right  . . . . . . . . . . . .	 00000004	 Word
+  Bottom . . . . . . . . . . . .	 00000006	 Word
+SYSTEMTIME . . . . . . . . . . .	 00000010
+  wYear  . . . . . . . . . . . .	 00000000	 Word
+  wMonth . . . . . . . . . . . .	 00000002	 Word
+  wDayOfWeek . . . . . . . . . .	 00000004	 Word
+  wDay . . . . . . . . . . . . .	 00000006	 Word
+  wHour  . . . . . . . . . . . .	 00000008	 Word
+  wMinute  . . . . . . . . . . .	 0000000A	 Word
+  wSecond  . . . . . . . . . . .	 0000000C	 Word
+  wMilliseconds  . . . . . . . .	 0000000E	 Word
+WINDOW_BUFFER_SIZE_RECORD  . . .	 00000004
+  dwSize . . . . . . . . . . . .	 00000000	 DWord
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 0000128A Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 000007F9 Para	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+CloseFile  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+CloseHandle  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Clrscr . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+CreateFileA  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+CreateOutputFile . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Crlf . . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Delay  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+DumpMem  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+DumpRegs . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+FileTimeToDosDateTime  . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+FileTimeToSystemTime . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+FlushConsoleInputBuffer  . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+FormatMessageA . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetCommandLineA  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetCommandTail . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetConsoleCP . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetConsoleCursorInfo . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetConsoleMode . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetConsoleScreenBufferInfo . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetDateTime  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetFileTime  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetKeyState  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetLastError . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetLocalTime . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetMaxXY . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetMseconds  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetNumberOfConsoleInputEvents  .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetProcessHeap . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetStdHandle . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetSystemTime  . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetTextColor . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+GetTickCount . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Gotoxy . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+HeapAlloc  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+HeapCreate . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+HeapDestroy  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+HeapFree . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+HeapSize . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+IsDigit  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+LEVEL1 . . . . . . . . . . . . .	P Near	 000005AD _TEXT	Length= 0000005D Public STDCALL
+  quesA  . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev1q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor . . . . . . . . . . . . .	Byte	 bp + 00000010
+  L7 . . . . . . . . . . . . . .	L Near	 000005C6 _TEXT	
+  K  . . . . . . . . . . . . . .	L Near	 000005E2 _TEXT	
+LEVEL2 . . . . . . . . . . . . .	P Near	 0000054F _TEXT	Length= 0000005E Public STDCALL
+  ques . . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev2q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor2  . . . . . . . . . . . .	Byte	 bp + 00000010
+  L2 . . . . . . . . . . . . . .	L Near	 00000568 _TEXT	
+  E1 . . . . . . . . . . . . . .	L Near	 00000585 _TEXT	
+LEVEL3 . . . . . . . . . . . . .	P Near	 000004F1 _TEXT	Length= 0000005E Public STDCALL
+  ques3  . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev3q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor3  . . . . . . . . . . . .	Byte	 bp + 00000010
+  L3 . . . . . . . . . . . . . .	L Near	 0000050A _TEXT	
+  E1 . . . . . . . . . . . . . .	L Near	 00000527 _TEXT	
+LocalFree  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+MessageBoxA  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+MsgBoxAsk  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+MsgBox . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+OpenInputFile  . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ParseDecimal32 . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ParseInteger32 . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+PeekConsoleInputA  . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Percentage . . . . . . . . . . .	P Near	 000004A6 _TEXT	Length= 0000004B Public STDCALL
+QLEVEL1  . . . . . . . . . . . .	P Near	 000006E8 _TEXT	Length= 0000006E Public STDCALL
+  quesA  . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev1q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor . . . . . . . . . . . . .	Byte	 bp + 00000010
+  L7 . . . . . . . . . . . . . .	L Near	 00000701 _TEXT	
+  K  . . . . . . . . . . . . . .	L Near	 0000071F _TEXT	
+  L  . . . . . . . . . . . . . .	L Near	 0000072E _TEXT	
+  S3 . . . . . . . . . . . . . .	L Near	 00000731 _TEXT	
+QLEVEL2  . . . . . . . . . . . .	P Near	 00000679 _TEXT	Length= 0000006F Public STDCALL
+  ques . . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev2q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor2  . . . . . . . . . . . .	Byte	 bp + 00000010
+  L2 . . . . . . . . . . . . . .	L Near	 00000692 _TEXT	
+  E1 . . . . . . . . . . . . . .	L Near	 000006B1 _TEXT	
+  E2 . . . . . . . . . . . . . .	L Near	 000006C0 _TEXT	
+  S2 . . . . . . . . . . . . . .	L Near	 000006C3 _TEXT	
+QLEVEL3  . . . . . . . . . . . .	P Near	 0000060A _TEXT	Length= 0000006F Public STDCALL
+  ques3  . . . . . . . . . . . .	DWord	 bp + 00000008
+  lev3q  . . . . . . . . . . . .	DWord	 bp + 0000000C
+  scor3  . . . . . . . . . . . .	Byte	 bp + 00000010
+  L3 . . . . . . . . . . . . . .	L Near	 00000623 _TEXT	
+  E1 . . . . . . . . . . . . . .	L Near	 00000642 _TEXT	
+  E2 . . . . . . . . . . . . . .	L Near	 00000651 _TEXT	
+  S  . . . . . . . . . . . . . .	L Near	 00000654 _TEXT	
+Random32 . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+RandomRange  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Randomize  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadChar . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadConsoleA . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadConsoleInputA  . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadDec  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadFile . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadFloat  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadFromFile . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadHex  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadInt  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadKeyFlush . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadKey  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ReadString . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleCursorInfo . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleCursorPosition . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleMode . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleScreenBufferSize . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleTextAttribute  . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleTitleA . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetConsoleWindowInfo . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetFilePointer . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetLocalTime . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SetTextColor . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+ShowFPUStack . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Sleep  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+StrLength  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Str_compare  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Str_copy . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Str_length . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Str_trim . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+Str_ucase  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+SystemTimeToFileTime . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WaitMsg  . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteBinB  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteBin . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteChar  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteConsoleA  . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteConsoleOutputAttribute  . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteConsoleOutputCharacterA . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteDec . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteFile  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteFloat . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteHexB  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteHex . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteInt . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteStackFrameName  . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000045B Public STDCALL
+  file_ok  . . . . . . . . . . .	L Near	 0000002A _TEXT	
+  quit . . . . . . . . . . . . .	L Near	 00000092 _TEXT	
+  Quiz . . . . . . . . . . . . .	L Near	 000002C4 _TEXT	
+  I1 . . . . . . . . . . . . . .	L Near	 000003D0 _TEXT	
+  I2 . . . . . . . . . . . . . .	L Near	 000003FA _TEXT	
+  I3 . . . . . . . . . . . . . .	L Near	 00000425 _TEXT	
+  exi  . . . . . . . . . . . . .	L Near	 00000454 _TEXT	
+outputfile . . . . . . . . . . .	P Near	 000007DC _TEXT	Length= 0000001D Public STDCALL
+printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+reward . . . . . . . . . . . . .	P Near	 0000045B _TEXT	Length= 0000004B Public STDCALL
+  L5 . . . . . . . . . . . . . .	L Near	 0000046F _TEXT	
+  Rw . . . . . . . . . . . . . .	L Near	 00000495 _TEXT	
+scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+spaces . . . . . . . . . . . . .	P Near	 000007C2 _TEXT	Length= 0000001A Public STDCALL
+standing . . . . . . . . . . . .	P Near	 00000756 _TEXT	Length= 0000006C Public STDCALL
+  EQUAL  . . . . . . . . . . . .	L Near	 00000791 _TEXT	
+  GREATER  . . . . . . . . . . .	L Near	 000007AC _TEXT	
+wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+ALT_MASK . . . . . . . . . . . .	Number	 00000003h   
+BUFFER_SIZE  . . . . . . . . . .	Number	 000001F5h   
+CAPSLOCK_ON  . . . . . . . . . .	Number	 00000080h   
+CREATE_ALWAYS  . . . . . . . . .	Number	 00000002h   
+CREATE_NEW . . . . . . . . . . .	Number	 00000001h   
+CTRL_MASK  . . . . . . . . . . .	Number	 0000000Ch   
+CreateFile . . . . . . . . . . .	Text   	 CreateFileA
+DO_NOT_SHARE . . . . . . . . . .	Number	 00000000h   
+ENABLE_ECHO_INPUT  . . . . . . .	Number	 00000004h   
+ENABLE_LINE_INPUT  . . . . . . .	Number	 00000002h   
+ENABLE_MOUSE_INPUT . . . . . . .	Number	 00000010h   
+ENABLE_PROCESSED_INPUT . . . . .	Number	 00000001h   
+ENABLE_PROCESSED_OUTPUT  . . . .	Number	 00000001h   
+ENABLE_WINDOW_INPUT  . . . . . .	Number	 00000008h   
+ENABLE_WRAP_AT_EOL_OUTPUT  . . .	Number	 00000002h   
+ENHANCED_KEY . . . . . . . . . .	Number	 00000100h   
+FALSE  . . . . . . . . . . . . .	Number	 00000000h   
+FILE_APPEND_DATA . . . . . . . .	Number	 00000004h   
+FILE_ATTRIBUTE_ARCHIVE . . . . .	Number	 00000020h   
+FILE_ATTRIBUTE_COMPRESSED  . . .	Number	 00000800h   
+FILE_ATTRIBUTE_DEVICE  . . . . .	Number	 00000040h   
+FILE_ATTRIBUTE_DIRECTORY . . . .	Number	 00000010h   
+FILE_ATTRIBUTE_ENCRYPTED . . . .	Number	 00004000h   
+FILE_ATTRIBUTE_HIDDEN  . . . . .	Number	 00000002h   
+FILE_ATTRIBUTE_NORMAL  . . . . .	Number	 00000080h   
+FILE_ATTRIBUTE_NOT_CONTENT_INDEXED .	Number	 00002000h   
+FILE_ATTRIBUTE_OFFLINE . . . . .	Number	 00001000h   
+FILE_ATTRIBUTE_READONLY  . . . .	Number	 00000001h   
+FILE_ATTRIBUTE_REPARSE_POINT . .	Number	 00000400h   
+FILE_ATTRIBUTE_SPARSE_FILE . . .	Number	 00000200h   
+FILE_ATTRIBUTE_SYSTEM  . . . . .	Number	 00000004h   
+FILE_ATTRIBUTE_TEMPORARY . . . .	Number	 00000100h   
+FILE_BEGIN . . . . . . . . . . .	Number	 00000000h   
+FILE_CURRENT . . . . . . . . . .	Number	 00000001h   
+FILE_DELETE_CHILD  . . . . . . .	Number	 00000040h   
+FILE_END . . . . . . . . . . . .	Number	 00000002h   
+FILE_READ_DATA . . . . . . . . .	Number	 00000001h   
+FILE_SHARE_DELETE  . . . . . . .	Number	 00000004h   
+FILE_SHARE_READ  . . . . . . . .	Number	 00000001h   
+FILE_SHARE_WRITE . . . . . . . .	Number	 00000002h   
+FILE_WRITE_DATA  . . . . . . . .	Number	 00000002h   
+FOCUS_EVENT  . . . . . . . . . .	Number	 00000010h   
+FORMAT_MESSAGE_ALLOCATE_BUFFER .	Number	 00000100h   
+FORMAT_MESSAGE_FROM_SYSTEM . . .	Number	 00001000h   
+FormatMessage  . . . . . . . . .	Text   	 FormatMessageA
+GENERIC_ALL  . . . . . . . . . .	Number	 10000000h   
+GENERIC_EXECUTE  . . . . . . . .	Number	 20000000h   
+GENERIC_READ . . . . . . . . . .	Number	 -80000000h   
+GENERIC_WRITE  . . . . . . . . .	Number	 40000000h   
+GetCommandLine . . . . . . . . .	Text   	 GetCommandLineA
+HANDLE . . . . . . . . . . . . .	Text   	 DWORD
+HEAP_GENERATE_EXCEPTIONS . . . .	Number	 00000004h   
+HEAP_GROWABLE  . . . . . . . . .	Number	 00000002h   
+HEAP_NO_SERIALIZE  . . . . . . .	Number	 00000001h   
+HEAP_REALLOC_IN_PLACE_ONLY . . .	Number	 00000010h   
+HEAP_ZERO_MEMORY . . . . . . . .	Number	 00000008h   
+IDABORT  . . . . . . . . . . . .	Number	 00000003h   
+IDCANCEL . . . . . . . . . . . .	Number	 00000002h   
+IDCLOSE  . . . . . . . . . . . .	Number	 00000008h   
+IDCONTINUE . . . . . . . . . . .	Number	 0000000Bh   
+IDHELP . . . . . . . . . . . . .	Number	 00000009h   
+IDIGNORE . . . . . . . . . . . .	Number	 00000005h   
+IDNO . . . . . . . . . . . . . .	Number	 00000007h   
+IDOK . . . . . . . . . . . . . .	Number	 00000001h   
+IDRETRY  . . . . . . . . . . . .	Number	 00000004h   
+IDTIMEOUT  . . . . . . . . . . .	Number	 00007D00h   
+IDTRYAGAIN . . . . . . . . . . .	Number	 0000000Ah   
+IDYES  . . . . . . . . . . . . .	Number	 00000006h   
+INVALID_HANDLE_VALUE . . . . . .	Number	 -00000001h   
+KBDOWN_FLAG  . . . . . . . . . .	Number	 00000001h   
+KEY_EVENT  . . . . . . . . . . .	Number	 00000001h   
+KEY_MASKS  . . . . . . . . . . .	Number	 0000001Fh   
+LEFT_ALT_PRESSED . . . . . . . .	Number	 00000002h   
+LEFT_CTRL_PRESSED  . . . . . . .	Number	 00000008h   
+Level1Q  . . . . . . . . . . . .	Byte	 00000D2E _DATA	
+Level2Q  . . . . . . . . . . . .	Byte	 00000892 _DATA	
+Level3Q  . . . . . . . . . . . .	Byte	 0000036B _DATA	
+MB_ABORTRETRYIGNORE  . . . . . .	Number	 00000002h   
+MB_APPLMODAL . . . . . . . . . .	Number	 00000000h   
+MB_CANCELTRYCONTINUE . . . . . .	Number	 00000006h   
+MB_DEFBUTTON1  . . . . . . . . .	Number	 00000000h   
+MB_DEFBUTTON2  . . . . . . . . .	Number	 00000100h   
+MB_DEFBUTTON3  . . . . . . . . .	Number	 00000200h   
+MB_DEFBUTTON4  . . . . . . . . .	Number	 00000300h   
+MB_HELP  . . . . . . . . . . . .	Number	 00004000h   
+MB_ICONASTERISK  . . . . . . . .	Number	 00000040h   
+MB_ICONERROR . . . . . . . . . .	Number	 00000010h   
+MB_ICONEXCLAMATION . . . . . . .	Number	 00000030h   
+MB_ICONHAND  . . . . . . . . . .	Number	 00000010h   
+MB_ICONINFORMATION . . . . . . .	Number	 00000040h   
+MB_ICONQUESTION  . . . . . . . .	Number	 00000020h   
+MB_ICONSTOP  . . . . . . . . . .	Number	 00000010h   
+MB_ICONWARNING . . . . . . . . .	Number	 00000030h   
+MB_OKCANCEL  . . . . . . . . . .	Number	 00000001h   
+MB_OK  . . . . . . . . . . . . .	Number	 00000000h   
+MB_RETRYCANCEL . . . . . . . . .	Number	 00000005h   
+MB_SYSTEMMODAL . . . . . . . . .	Number	 00001000h   
+MB_TASKMODAL . . . . . . . . . .	Number	 00002000h   
+MB_USERICON  . . . . . . . . . .	Number	 00000080h   
+MB_YESNOCANCEL . . . . . . . . .	Number	 00000003h   
+MB_YESNO . . . . . . . . . . . .	Number	 00000004h   
+MENU_EVENT . . . . . . . . . . .	Number	 00000008h   
+MOUSE_EVENT  . . . . . . . . . .	Number	 00000002h   
+MessageBox . . . . . . . . . . .	Text   	 MessageBoxA
+NULL . . . . . . . . . . . . . .	Number	 00000000h   
+NUMLOCK_ON . . . . . . . . . . .	Number	 00000020h   
+OPEN_ALWAYS  . . . . . . . . . .	Number	 00000004h   
+OPEN_EXISTING  . . . . . . . . .	Number	 00000003h   
+Opt  . . . . . . . . . . . . . .	Byte	 00000316 _DATA	
+PeekConsoleInput . . . . . . . .	Text   	 PeekConsoleInputA
+QuizScore  . . . . . . . . . . .	Byte	 000002F4 _DATA	
+RIGHT_ALT_PRESSED  . . . . . . .	Number	 00000001h   
+RIGHT_CTRL_PRESSED . . . . . . .	Number	 00000004h   
+ReadConsoleInput . . . . . . . .	Text   	 ReadConsoleInputA
+ReadConsole  . . . . . . . . . .	Text   	 ReadConsoleA
+SCROLLLOCK_ON  . . . . . . . . .	Number	 00000040h   
+SHIFT_MASK . . . . . . . . . . .	Number	 00000010h   
+SHIFT_PRESSED  . . . . . . . . .	Number	 00000010h   
+STD_ERROR_HANDLE . . . . . . . .	Number	 -0000000Ch   
+STD_INPUT_HANDLE . . . . . . . .	Number	 -0000000Ah   
+STD_OUTPUT_HANDLE  . . . . . . .	Number	 -0000000Bh   
+SetConsoleTitle  . . . . . . . .	Text   	 SetConsoleTitleA
+TAB  . . . . . . . . . . . . . .	Number	 00000009h   
+TRUE . . . . . . . . . . . . . .	Number	 00000001h   
+TRUNCATE_EXISTING  . . . . . . .	Number	 00000005h   
+TotalScore . . . . . . . . . . .	Word	 00000365 _DATA	
+VK_11  . . . . . . . . . . . . .	Number	 000000BDh   
+VK_12  . . . . . . . . . . . . .	Number	 000000BBh   
+VK_ADD . . . . . . . . . . . . .	Number	 0000006Bh   
+VK_BACK  . . . . . . . . . . . .	Number	 00000008h   
+VK_CANCEL  . . . . . . . . . . .	Number	 00000003h   
+VK_CAPITAL . . . . . . . . . . .	Number	 00000014h   
+VK_CLEAR . . . . . . . . . . . .	Number	 0000000Ch   
+VK_CONTROL . . . . . . . . . . .	Number	 00000011h   
+VK_DECIMAL . . . . . . . . . . .	Number	 0000006Eh   
+VK_DELETE  . . . . . . . . . . .	Number	 0000002Eh   
+VK_DIVIDE  . . . . . . . . . . .	Number	 0000006Fh   
+VK_DOWN  . . . . . . . . . . . .	Number	 00000028h   
+VK_END . . . . . . . . . . . . .	Number	 00000023h   
+VK_ESCAPE  . . . . . . . . . . .	Number	 0000001Bh   
+VK_EXECUTE . . . . . . . . . . .	Number	 0000002Bh   
+VK_F10 . . . . . . . . . . . . .	Number	 00000079h   
+VK_F11 . . . . . . . . . . . . .	Number	 0000007Ah   
+VK_F12 . . . . . . . . . . . . .	Number	 0000007Bh   
+VK_F13 . . . . . . . . . . . . .	Number	 0000007Ch   
+VK_F14 . . . . . . . . . . . . .	Number	 0000007Dh   
+VK_F15 . . . . . . . . . . . . .	Number	 0000007Eh   
+VK_F16 . . . . . . . . . . . . .	Number	 0000007Fh   
+VK_F17 . . . . . . . . . . . . .	Number	 00000080h   
+VK_F18 . . . . . . . . . . . . .	Number	 00000081h   
+VK_F19 . . . . . . . . . . . . .	Number	 00000082h   
+VK_F1  . . . . . . . . . . . . .	Number	 00000070h   
+VK_F20 . . . . . . . . . . . . .	Number	 00000083h   
+VK_F21 . . . . . . . . . . . . .	Number	 00000084h   
+VK_F22 . . . . . . . . . . . . .	Number	 00000085h   
+VK_F23 . . . . . . . . . . . . .	Number	 00000086h   
+VK_F24 . . . . . . . . . . . . .	Number	 00000087h   
+VK_F2  . . . . . . . . . . . . .	Number	 00000071h   
+VK_F3  . . . . . . . . . . . . .	Number	 00000072h   
+VK_F4  . . . . . . . . . . . . .	Number	 00000073h   
+VK_F5  . . . . . . . . . . . . .	Number	 00000074h   
+VK_F6  . . . . . . . . . . . . .	Number	 00000075h   
+VK_F7  . . . . . . . . . . . . .	Number	 00000076h   
+VK_F8  . . . . . . . . . . . . .	Number	 00000077h   
+VK_F9  . . . . . . . . . . . . .	Number	 00000078h   
+VK_HELP  . . . . . . . . . . . .	Number	 0000002Fh   
+VK_HOME  . . . . . . . . . . . .	Number	 00000024h   
+VK_INSERT  . . . . . . . . . . .	Number	 0000002Dh   
+VK_LBUTTON . . . . . . . . . . .	Number	 00000001h   
+VK_LCONTROL  . . . . . . . . . .	Number	 000000A2h   
+VK_LEFT  . . . . . . . . . . . .	Number	 00000025h   
+VK_LMENU . . . . . . . . . . . .	Number	 000000A4h   
+VK_LSHIFT  . . . . . . . . . . .	Number	 000000A0h   
+VK_MENU  . . . . . . . . . . . .	Number	 00000012h   
+VK_MULTIPLY  . . . . . . . . . .	Number	 0000006Ah   
+VK_NEXT  . . . . . . . . . . . .	Number	 00000022h   
+VK_NUMLOCK . . . . . . . . . . .	Number	 00000090h   
+VK_NUMPAD0 . . . . . . . . . . .	Number	 00000060h   
+VK_NUMPAD1 . . . . . . . . . . .	Number	 00000061h   
+VK_NUMPAD2 . . . . . . . . . . .	Number	 00000062h   
+VK_NUMPAD3 . . . . . . . . . . .	Number	 00000063h   
+VK_NUMPAD4 . . . . . . . . . . .	Number	 00000064h   
+VK_NUMPAD5 . . . . . . . . . . .	Number	 00000065h   
+VK_NUMPAD6 . . . . . . . . . . .	Number	 00000066h   
+VK_NUMPAD7 . . . . . . . . . . .	Number	 00000067h   
+VK_NUMPAD8 . . . . . . . . . . .	Number	 00000068h   
+VK_NUMPAD9 . . . . . . . . . . .	Number	 00000069h   
+VK_PAUSE . . . . . . . . . . . .	Number	 00000013h   
+VK_PRINT . . . . . . . . . . . .	Number	 0000002Ah   
+VK_PRIOR . . . . . . . . . . . .	Number	 00000021h   
+VK_RBUTTON . . . . . . . . . . .	Number	 00000002h   
+VK_RCONTROL  . . . . . . . . . .	Number	 000000A3h   
+VK_RETURN  . . . . . . . . . . .	Number	 0000000Dh   
+VK_RIGHT . . . . . . . . . . . .	Number	 00000027h   
+VK_RMENU . . . . . . . . . . . .	Number	 000000A5h   
+VK_RSHIFT  . . . . . . . . . . .	Number	 000000A1h   
+VK_SCROLL  . . . . . . . . . . .	Number	 00000091h   
+VK_SEPARATER . . . . . . . . . .	Number	 0000006Ch   
+VK_SHIFT . . . . . . . . . . . .	Number	 00000010h   
+VK_SNAPSHOT  . . . . . . . . . .	Number	 0000002Ch   
+VK_SPACE . . . . . . . . . . . .	Number	 00000020h   
+VK_SUBTRACT  . . . . . . . . . .	Number	 0000006Dh   
+VK_TAB . . . . . . . . . . . . .	Number	 00000009h   
+VK_UP  . . . . . . . . . . . . .	Number	 00000026h   
+WINDOW_BUFFER_SIZE_EVENT . . . .	Number	 00000004h   
+WriteConsoleOutputCharacter  . .	Text   	 WriteConsoleOutputCharacterA
+WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
+arr1 . . . . . . . . . . . . . .	Byte	 00000127 _DATA	
+arr2 . . . . . . . . . . . . . .	Byte	 00000131 _DATA	
+arr3 . . . . . . . . . . . . . .	Byte	 0000013B _DATA	
+black  . . . . . . . . . . . . .	Number	 00000000h   
+blue . . . . . . . . . . . . . .	Number	 00000001h   
+brown  . . . . . . . . . . . . .	Number	 00000006h   
+bufSize  . . . . . . . . . . . .	DWord	 0000002A _DATA	
+buffer2  . . . . . . . . . . . .	Byte	 00001073 _DATA	
+buffer . . . . . . . . . . . . .	Byte	 00000000 _DATA	
+bytesWritten . . . . . . . . . .	DWord	 00000050 _DATA	
+count  . . . . . . . . . . . . .	DWord	 00000367 _DATA	
+cyan . . . . . . . . . . . . . .	Number	 00000003h   
+errMsg . . . . . . . . . . . . .	Byte	 0000002E _DATA	
+exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
+f_handle . . . . . . . . . . . .	DWord	 00001274 _DATA	
+f_name . . . . . . . . . . . . .	Byte	 00001268 _DATA	
+fileHandle . . . . . . . . . . .	DWord	 0000004C _DATA	
+filename . . . . . . . . . . . .	Byte	 00000041 _DATA	
+finalmsg . . . . . . . . . . . .	Byte	 00000306 _DATA	
+gray . . . . . . . . . . . . . .	Number	 00000008h   
+green  . . . . . . . . . . . . .	Number	 00000002h   
+life . . . . . . . . . . . . . .	Byte	 00000364 _DATA	
+lightBlue  . . . . . . . . . . .	Number	 00000009h   
+lightCyan  . . . . . . . . . . .	Number	 0000000Bh   
+lightGray  . . . . . . . . . . .	Number	 00000007h   
+lightGreen . . . . . . . . . . .	Number	 0000000Ah   
+lightMagenta . . . . . . . . . .	Number	 0000000Dh   
+lightRed . . . . . . . . . . . .	Number	 0000000Ch   
+magenta  . . . . . . . . . . . .	Number	 00000005h   
+msg1 . . . . . . . . . . . . . .	Byte	 00000152 _DATA	
+msg3 . . . . . . . . . . . . . .	Byte	 00000167 _DATA	
+msg4 . . . . . . . . . . . . . .	Byte	 0000017C _DATA	
+name1  . . . . . . . . . . . . .	Byte	 00000145 _DATA	
+player . . . . . . . . . . . . .	Byte	 000000CC _DATA	
+q10A . . . . . . . . . . . . . .	Number	 00000053h   
+q10C . . . . . . . . . . . . . .	Number	 00000063h   
+q10  . . . . . . . . . . . . . .	Number	 00000037h   
+q1A  . . . . . . . . . . . . . .	Number	 0000004Fh   
+q1C  . . . . . . . . . . . . . .	Number	 00000058h   
+q1 . . . . . . . . . . . . . . .	Number	 0000003Fh   
+q2A  . . . . . . . . . . . . . .	Number	 00000048h   
+q2C  . . . . . . . . . . . . . .	Number	 000000B3h   
+q2 . . . . . . . . . . . . . . .	Number	 00000040h   
+q3A  . . . . . . . . . . . . . .	Number	 0000009Ah   
+q3C  . . . . . . . . . . . . . .	Number	 00000096h   
+q3 . . . . . . . . . . . . . . .	Number	 00000062h   
+q4A  . . . . . . . . . . . . . .	Number	 000000A8h   
+q4C  . . . . . . . . . . . . . .	Number	 000000D9h   
+q4 . . . . . . . . . . . . . . .	Number	 00000061h   
+q5A  . . . . . . . . . . . . . .	Number	 000000A3h   
+q5C  . . . . . . . . . . . . . .	Number	 00000060h   
+q5 . . . . . . . . . . . . . . .	Number	 00000042h   
+q6A  . . . . . . . . . . . . . .	Number	 0000004Dh   
+q6C  . . . . . . . . . . . . . .	Number	 000000D6h   
+q6 . . . . . . . . . . . . . . .	Number	 00000063h   
+q7A  . . . . . . . . . . . . . .	Number	 00000089h   
+q7C  . . . . . . . . . . . . . .	Number	 00000048h   
+q7 . . . . . . . . . . . . . . .	Number	 00000056h   
+q8A  . . . . . . . . . . . . . .	Number	 0000007Fh   
+q8C  . . . . . . . . . . . . . .	Number	 0000005Ch   
+q8 . . . . . . . . . . . . . . .	Number	 00000057h   
+q9A  . . . . . . . . . . . . . .	Number	 00000078h   
+q9C  . . . . . . . . . . . . . .	Number	 00000070h   
+q9 . . . . . . . . . . . . . . .	Number	 0000007Ah   
+quesL1 . . . . . . . . . . . . .	DWord	 00000054 _DATA	
+quesL2 . . . . . . . . . . . . .	DWord	 0000007C _DATA	
+quesL3 . . . . . . . . . . . . .	DWord	 000000A4 _DATA	
+red  . . . . . . . . . . . . . .	Number	 00000004h   
+scoreL1  . . . . . . . . . . . .	Byte	 0000014F _DATA	
+scoreL2  . . . . . . . . . . . .	Byte	 00000150 _DATA	
+scoreL3  . . . . . . . . . . . .	Byte	 00000151 _DATA	
+spaces1  . . . . . . . . . . . .	Byte	 000000E0 _DATA	
+space  . . . . . . . . . . . . .	Byte	 00001288 _DATA	
+str1 . . . . . . . . . . . . . .	Byte	 0000127C _DATA	
+string1  . . . . . . . . . . . .	Byte	 00000191 _DATA	
+string2  . . . . . . . . . . . .	Byte	 000001A4 _DATA	
+string3  . . . . . . . . . . . .	Byte	 000001B3 _DATA	
+string4  . . . . . . . . . . . .	Byte	 000001C1 _DATA	
+string5  . . . . . . . . . . . .	Byte	 000001DD _DATA	
+string6  . . . . . . . . . . . .	Byte	 000001F8 _DATA	
+string7  . . . . . . . . . . . .	Byte	 000002D6 _DATA	
+stringlength . . . . . . . . . .	DWord	 00001278 _DATA	
+white  . . . . . . . . . . . . .	Number	 0000000Fh   
+wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
+yellow . . . . . . . . . . . . .	Number	 0000000Eh   
+
+	   0 Warnings
+	   0 Errors

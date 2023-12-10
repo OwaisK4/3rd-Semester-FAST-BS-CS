@@ -1,0 +1,3 @@
+﻿  Assembling q1.asm...
+q1.asm(1): fatal error A1000: cannot open file : x64\Debug\q1.obj
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml64.exe /c /nologo /Zi /Fo"x64\Debug\q1.obj" /Fl"$COAL_Lab_05(21K-3298).lst" /I "C:\Irvine" /W3 /errorReport:prompt  /Taq1.asm" exited with code 1.
